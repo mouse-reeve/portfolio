@@ -23,17 +23,6 @@ angular.module('app', ['ngRoute', 'ngResource'])
     };
 })
 
-.filter('capitalize', function() {
-    return function(input) {
-        if (!input) {
-            return '';
-        }
-        return input.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-    };
-})
-
 .filter('formatNumber', function() {
     return function (input, decimals) {
         var dec = !!decimals && angular.isNumber(decimals) ? decimals : 0;
@@ -42,6 +31,58 @@ angular.module('app', ['ngRoute', 'ngResource'])
         } else {
             return '';
         }
+    };
+})
+
+.filter('reverseTime', function() {
+    return function (input) {
+        return input.split('').reverse().join('');
+    };
+})
+
+.filter('timeToBase', function() {
+    return function (input, radix, noDelimiter) {
+        var numbers = input.split(':');
+        for (var i=0; i<numbers.length; i++) {
+            numbers[i] = (+numbers[i]).toString(radix);
+            if (numbers[i].length < 2) {
+                numbers[i] = '0' + numbers[i];
+            }
+        }
+        if (noDelimiter) {
+            return numbers.join('');
+        }
+        return numbers.join(':');
+    };
+})
+
+.filter('timeToRoman', function() {
+    return function (input) {
+        var buckets = [[50, 'L'], [10, 'X'], [5, 'V'], [1, 'I']];
+        var numbers = input.split(':');
+
+        for (var i=0; i<numbers.length; i++) {
+            var number = +numbers[i];
+            var roman = '';
+
+            for (var j=0; j<buckets.length; j++) {
+                var value = buckets[j][0];
+                var letter = buckets[j][1];
+                if (number >= value) {
+                    roman += Array(Math.floor(number/value)+1).join(letter);
+                    number -= value * (Math.floor(number/value));
+                }
+                if (!number) {
+                    break;
+                }
+                if (number == value - 1) {
+                    roman += 'I' + letter;
+                    number -= (value - 1);
+                }
+            }
+            numbers[i] = roman;
+        };
+        return numbers.join(':');
     };
 })
 
