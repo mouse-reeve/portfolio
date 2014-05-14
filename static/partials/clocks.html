@@ -26,13 +26,18 @@
         {{clock | date:'H:mm:ss' | timeToBase:16}}
     </dd>
 
+    <dt>Trinary time</dt>
+    <dd class="time">{{clock | date:'H:mm:ss' | timeToBase:3}}</dd>
+
     <dt>Binary time</dt>
     <dd class="time">{{clock | date:'H:mm:ss' | timeToBase:2}}</dd>
 
-    <dt>Trinary time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToBase:3}}</dd>
+    <dt>Negabinary time</dt>
+    <dd class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:2}}</dd>
+
+    <dt>Negadecimal time</dt>
+    <dd class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:10}}</dd>
 
     <dt>Roman numeral time</dt>
     <dd class="time">{{clock | date:'H:mm:ss' | timeToRoman}}</dd>
 </dl>
-
