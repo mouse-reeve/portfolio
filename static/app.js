@@ -8,7 +8,7 @@ angular.module('app', ['ngRoute', 'ngResource'])
         })
         .when('/clocks', {
             controller: 'ClocksCtrl',
-            templateUrl: 'static/partials/time.html'
+            templateUrl: 'static/partials/clocks.html'
         })
         .otherwise({
             redirectTo: '/'
@@ -46,8 +46,15 @@ angular.module('app', ['ngRoute', 'ngResource'])
 })
 
 .controller('MainCtrl', function($scope) {
-    console.log('hi');
-    $scope.test = 'hi';
+    $scope.text = 'it\'s ok to be confused';
+})
 
+.controller('ClocksCtrl', function($scope, $timeout) {
+    $scope.clock = Date.now();
+    $scope.tick = function() {
+        $scope.clock = Date.now();
+        timeout = $timeout($scope.tick,1000);
+    }
+    var timeout = $timeout($scope.tick, 1000);
 });
 
