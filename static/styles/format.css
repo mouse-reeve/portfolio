@@ -1,0 +1,30 @@
+header {
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+h1 small {
+    color: #c0c0c0;
+}
+
+dl {
+    overflow: auto;
+}
+
+dt {
+    font-weight: bold;
+    float: left;
+    width: 15em;
+    clear: both;
+}
+dd {
+    padding: 5px;
+    float: left;
+}
+
+.time {
+    font-family: monospace;
+}
+.color-time {
+    color: white;
+}
