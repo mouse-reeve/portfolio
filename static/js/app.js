@@ -2,9 +2,11 @@ angular.module('app', [
         'formatNumberFilter',
 
         // clock filters
+        'percentTimeElapsedFilter',
         'percentTimeLeftFilter',
         'reverseTimeFilter',
         'timeToBaseFilter',
+        'timeToMovieFilter',
         'timeToNegativeBaseFilter',
         'timeToRomanFilter',
 

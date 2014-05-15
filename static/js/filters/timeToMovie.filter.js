@@ -1,0 +1,12 @@
+angular.module('timeToMovieFilter', []).filter('timeToMovie', function() {
+    return function (input) {
+        var times = input.split(':');
+        var elapsed = (parseInt(times[0]) * 60 * 60) + (parseInt(times[1]) * 60) + parseInt(times[2]);
+        console.log(elapsed/(194*60));
+        // The Titanic
+        var movie = 194 * 60;
+        return Math.round(elapsed/movie*1000)/1000;
+    };
+})
+
+

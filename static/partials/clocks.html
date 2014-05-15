@@ -65,10 +65,14 @@
 </div>
 <div class="clock">
     <p class="label">Percent of day elapsed</p>
-    <p class="time">{{clock | date:'H:mm:ss' | percentTimeLeft}}%</p>
+    <p class="time">{{clock | date:'H:mm:ss' | percentTimeElapsed}}%</p>
 </div>
 <div class="clock">
     <p class="label">Percent of day remaining</p>
-    <p class="time">{{100 - (clock | date:'H:mm:ss' | percentTimeLeft)}}%</p>
+    <p class="time">{{clock | date:'H:mm:ss' | percentTimeLeft}}%</p>
+</div>
+<div class="clock">
+    <p class="label"><em>The Titanic</em> played...</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToMovie}} times</p>
 </div>
 
