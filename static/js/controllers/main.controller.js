@@ -4,7 +4,6 @@ function MainCtrl($location, $scope, $http) {
 
     $scope.randomPage = function () {
         var page = Math.floor(Math.random()*$scope.pages.length);
-        console.log(page);
         $location.path($scope.pages[page]);
     };
 }
