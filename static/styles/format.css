@@ -1,3 +1,9 @@
+* {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
 header {
     text-transform: uppercase;
     font-family: sans-serif;
@@ -22,8 +28,25 @@ dd {
     float: left;
 }
 
+.clock {
+    float: left;
+    width: 12em;
+    height: 2em;
+    border: 1px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
+.clock .label {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 8pt;
+    color: #c0c0c0;
+}
+
 .time {
     font-family: monospace;
+    padding: 5px;
 }
 .color-time {
     color: white;

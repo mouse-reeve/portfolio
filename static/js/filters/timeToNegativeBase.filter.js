@@ -20,7 +20,8 @@ angular.module('timeToNegativeBaseFilter', []).filter('timeToNegativeBase', func
                 number -= digit * Math.pow(radix, exp);
                 result += digit * Math.pow(10, exp);
             }
-            numbers[i] = result;
+            numbers[i] = result + '';
+            numbers[i] = numbers[i].length < 2 ? '0' + numbers[i] : numbers[i];
         }
         return numbers.join(':');
                 

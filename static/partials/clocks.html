@@ -1,46 +1,74 @@
-<dl class="clock">
-    <dt>12 hour time</dt>
-    <dd class="time">{{clock | date:'h:mm:ss a'}}</dd>
-
-    <dt>Time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss'}}</dd>
-
-    <dt>Reversed time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | reverseTime}}</dd>
-
-    <dt>Hexadecimal reversed time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | reverseTime | timeToBase:16}}</dd>
-
-    <dt>Hexadecimal color reversed time</dt>
-    <dd class="time color-time" style="background-color: #{{clock | date:'H:mm:ss' | reverseTime | timeToBase:16:true}}">
+<div class="clock">
+    <p class="label">12 hour</p>
+    <p class="time">{{clock | date:'h:mm:ss a'}}</p>
+</div>
+<div class="clock">
+    <p class="label">24 hour</p>
+    <p class="time">{{clock | date:'H:mm:ss'}}</p>
+</div>
+<div class="clock">
+    <p class="label">Reversed</p>
+    <p class="time">{{clock | date:'H:mm:ss' | reverseTime}}</p>
+</div>
+<div class="clock">
+    <p class="label">Hexadecimal reversed</p>
+    <p class="time">{{clock | date:'H:mm:ss' | reverseTime | timeToBase:16}}</p>
+</div>
+<div class="clock">
+    <p class="label">Hexadecimal color reversed</p>
+    <p class="time color-time" style="background-color: #{{clock | date:'H:mm:ss' | reverseTime | timeToBase:16:true}}">
         #{{clock | date:'H:mm:ss' | reverseTime | timeToBase:16:true}}
-    </dd>
-
-    <dt>Hexadecimal color time</dt>
-    <dd class="time color-time" style="background-color: #{{clock | date:'H:mm:ss' |  timeToBase:16:true}}">
+    </p>
+</div>
+<div class="clock">
+    <p class="label">Hexadecimal color</p>
+    <p class="time color-time" style="background-color: #{{clock | date:'H:mm:ss' |  timeToBase:16:true}}">
         #{{clock | date:'H:mm:ss' | timeToBase:16:true}}
-    </dd>
-
-    <dt>Hexadecimal time</dt>
-    <dd class="time">
+    </p>
+</div>
+<div class="clock">
+    <p class="label">Hexadecimal</p>
+    <p class="time">
         {{clock | date:'H:mm:ss' | timeToBase:16}}
-    </dd>
+    </p>
+</div>
+<div class="clock">
+    <p class="label">Trinary</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToBase:3}}</p>
+</div>
+<div class="clock">
+    <p class="label">Binary</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToBase:2}}</p>
+</div>
+<div class="clock">
+    <p class="label">Negabinary</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:2}}</p>
+</div>
+<div class="clock">
+    <p class="label">Negatrinary</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:3}}</p>
+</div>
+<div class="clock">
+    <p class="label">Negadecimal</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:10}}</p>
+</div>
+<div class="clock">
+    <p class="label">Base hour ({{clock | date:'h'}})</p>
+    <p class="time" ng-if="hour != 1">
+        {{clock | date:'h:mm:ss' | timeToBase:(clock | date:'h')}} {{clock | date:'a'}}
+    </p>
+    <p class="time" ng-if="hour == 1">Come back at 2</p>
+</div>
+<div class="clock">
+    <p class="label">Roman numeral</p>
+    <p class="time">{{clock | date:'H:mm:ss' | timeToRoman}}</p>
+</div>
+<div class="clock">
+    <p class="label">Percent of day elapsed</p>
+    <p class="time">{{clock | date:'H:mm:ss' | percentTimeLeft}}%</p>
+</div>
+<div class="clock">
+    <p class="label">Percent of day remaining</p>
+    <p class="time">{{100 - (clock | date:'H:mm:ss' | percentTimeLeft)}}%</p>
+</div>
 
-    <dt>Trinary time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToBase:3}}</dd>
-
-    <dt>Binary time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToBase:2}}</dd>
-
-    <dt>Negabinary time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:2}}</dd>
-
-    <dt>Negadecimal time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToNegativeBase:10}}</dd>
-
-    <dt>Roman numeral time</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | timeToRoman}}</dd>
-
-    <dt>Percent of day elapsed</dt>
-    <dd class="time">{{clock | date:'H:mm:ss' | percentTimeLeft}}%</dd>
-</dl>
