@@ -34,3 +34,6 @@ angular.module('app', [
             redirectTo: '/'
         });
 })
+.run(function($http) {
+    $http.defaults.useXDomain = true;
+})

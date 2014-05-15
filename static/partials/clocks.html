@@ -54,10 +54,10 @@
 </div>
 <div class="clock">
     <p class="label">Base hour ({{clock | date:'h'}})</p>
-    <p class="time" ng-if="hour != 1">
+    <p class="time" ng-if="hour != 1 && hour != 13">
         {{clock | date:'h:mm:ss' | timeToBase:(clock | date:'h')}} {{clock | date:'a'}}
     </p>
-    <p class="time" ng-if="hour == 1">Come back at 2</p>
+    <p class="time" ng-if="hour == 1 || hour == 13">Come back at 2</p>
 </div>
 <div class="clock">
     <p class="label">Roman numeral</p>
