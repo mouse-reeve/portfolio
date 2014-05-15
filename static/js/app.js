@@ -10,6 +10,7 @@ angular.module('app', [
 
         // directives
         'shuffleDirective',
+        'thesaurusDirective',
 
         'ngRoute'])
 
@@ -25,6 +26,9 @@ angular.module('app', [
         })
         .when('/chomsky', {
             templateUrl: 'static/partials/chomsky.html'
+        })
+        .when('/thesaurus', {
+            templateUrl: 'static/partials/thesaurus.html'
         })
         .otherwise({
             redirectTo: '/'
