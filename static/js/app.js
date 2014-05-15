@@ -30,12 +30,3 @@ angular.module('app', [
             redirectTo: '/'
         });
 })
-
-.factory('Thesaurus', function($resource, $q) {
-    return {
-        lookup: function(word) {
-            return word;
-        }
-    };
-});
-
