@@ -17,6 +17,10 @@ angular.module('shuffleDirective', []).directive('shuffle', ['$timeout', functio
                 timeout = $timeout(tick, Math.floor(Math.random()*delay));
             }
             var timeout = $timeout(tick, 5000);
+
+            scope.$on('$destroy', function() {
+                $timeout.cancel(timeout);
+            });
         }
     };
 }]);

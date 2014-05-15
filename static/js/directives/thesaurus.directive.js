@@ -4,19 +4,48 @@ angular.module('thesaurusDirective', []).directive('thesaurus', ['$timeout', fun
         link: function (scope, element, attrs) {
             var text = element[0].childNodes[0].data;
             var words = text.split(' ');
-            /*var ticks = 1;
+            var place = 0;
             var tick = function() {
-                ticks += 0.2;
-                var random = Math.floor(Math.random()*words.length-2);
-                var temp = words[random];
-                words[random] = words[random+1];
-                words[random+1] = temp;
-                element[0].childNodes[0].data = words.join(' ');
+                if (place >= words.length) {
+                    place = 0;
+                }
+                var word = words[place];
+                if (word) {
+                    var capitalize = false;
+                    var punctuation = '';
+                    if (word !== word.toLowerCase()) {
+                        word = word.toLowerCase();
+                        capitalize = true;
+                    }
+                    if (word.slice(-1).match(/[,\.]/) !== null) {
+                        punctuation = word.slice(-1);
+                        word = word.slice(0,-1);
+                    }
 
-                var delay = Math.ceil(10000/ticks);
-                timeout = $timeout(tick, Math.floor(Math.random()*delay));
+                    if (thesaurus[word]) {
+                        synonyms = thesaurus[word];
+                        var rand = Math.floor(Math.random()*synonyms.length);
+                        word = synonyms[rand];
+                        if (capitalize) {
+                            word = word.slice(0, 1).toUpperCase() + word.slice(1);
+                        }
+                        if (punctuation) {
+                            word += punctuation;
+                        }
+
+                        words[place] = word;
+                        element[0].childNodes[0].data = words.join(' ');
+                    }
+                }
+                place++;
+
+                timeout = $timeout(tick, 1000);
             }
-            var timeout = $timeout(tick, 5000);*/
+            var timeout = $timeout(tick, 0);
+
+            scope.$on('$destroy', function() {
+                $timeout.cancel(timeout);
+            });
         }
     };
 }]);
