@@ -7,5 +7,9 @@ function ClocksCtrl($scope, $timeout) {
         timeout = $timeout($scope.tick, 1000);
     }
     var timeout = $timeout($scope.tick, 1000);
+
+    scope.$on('$destroy', function() {
+        $timeout.cancel(timeout);
+    });
 }
 
