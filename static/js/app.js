@@ -32,6 +32,10 @@ angular.module('app', [
         .when('/thesaurus', {
             templateUrl: 'static/partials/thesaurus.html'
         })
+        .when('buzzbuzz', {
+            controller: 'BuzzBuzzCtrl',
+            templateUrl: 'static/partials/buzzbuzz.html'
+        })
         .otherwise({
             redirectTo: '/'
         });
