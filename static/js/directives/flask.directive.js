@@ -37,7 +37,7 @@ angular.module('flaskDirective', []).directive('flask', [function() {
                         } else if (first.toLowerCase() !== first) {
                             flask = " Flask"
                         }
-                        var ending = item.match(/ing|ed|s$/);
+                        var ending = item.match(/ing$|ed$|s$|ful$/);
                         if (ending) {
                             flask += ending[0];
                         }
