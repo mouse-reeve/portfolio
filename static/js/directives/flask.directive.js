@@ -24,11 +24,11 @@ angular.module('flaskDirective', []).directive('flask', [function() {
                 
                 if (display) {
                     var flask = ' flask';
-                    if (item.match(/^[\.\,\!\?\-].$/) || 
+                    if (item.match(/^[\.\,\!\?\-].$|\//) || 
                                 (!isNaN(parseFloat(item)) && item == parseFloat(item)) ||
                                 item.match(/^[\s]+$/)) {
                         flask = item;
-                    } else if (item.match(/^an$|^and$|^a$|^the$/)) {
+                    } else if (item.match(/^an$|^and$|^a$|^the$|^with$/)) {
                         flask = ' ' + item;
                     } else {
                         var first = item.slice(0,1);
@@ -37,7 +37,7 @@ angular.module('flaskDirective', []).directive('flask', [function() {
                         } else if (first.toLowerCase() !== first) {
                             flask = " Flask"
                         }
-                        var ending = item.match(/ing$|ed$|s$|ful$/);
+                        var ending = item.match(/ing$|ed$|s$|ful$|ular$|ly$/);
                         if (ending) {
                             flask += ending[0];
                         }

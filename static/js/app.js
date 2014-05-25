@@ -34,8 +34,8 @@ angular.module('app', [
             templateUrl: 'static/partials/thesaurus.html'
         })
         .when('/resume', {
-            templateUrl: 'static/partials/resume.html',
-            controller: 'ResumeCtrl'
+            controller: 'ResumeCtrl',
+            templateUrl: 'static/partials/resume.html'
         })
         .otherwise({
             redirectTo: '/'

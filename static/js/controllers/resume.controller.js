@@ -1,3 +1,3 @@
 function ResumeCtrl($scope) {
-    $scope.flaskMode = false;
+    $scope.flaskMode = true;
 }
