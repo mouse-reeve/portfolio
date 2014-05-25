@@ -11,12 +11,13 @@ angular.module('app', [
         'timeToRomanFilter',
 
         // directives
+        'flaskDirective',
         'shuffleDirective',
         'thesaurusDirective',
 
         'ngRoute'])
 
-.config(function($routeProvider) {
+.config(function($locationProvider, $routeProvider) {
     $routeProvider
         .when('/', {
             controller: 'MainCtrl',
@@ -32,13 +33,15 @@ angular.module('app', [
         .when('/thesaurus', {
             templateUrl: 'static/partials/thesaurus.html'
         })
-        .when('buzzbuzz', {
-            controller: 'BuzzBuzzCtrl',
-            templateUrl: 'static/partials/buzzbuzz.html'
+        .when('/resume', {
+            templateUrl: 'static/partials/resume.html',
+            controller: 'ResumeCtrl'
         })
         .otherwise({
             redirectTo: '/'
         });
+
+    $locationProvider.html5Mode(true);
 })
 .run(function($http) {
     $http.defaults.useXDomain = true;
