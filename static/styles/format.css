@@ -59,6 +59,8 @@ dd {
 
 .text section {
     margin-bottom: 1em;
+    clear: both;
+    overflow: auto;
 }
 
 .text h2 {
@@ -80,7 +82,18 @@ dd {
     float: right;
 }
 
+.skills li {
+    list-style: none;
+    float: left;
+    padding-right: 15px;
+}
+
 q a {
     color: black;
     text-decoration: none;
+}
+
+.toggle {
+    text-align: center;
+    font-size: 15pt;
 }

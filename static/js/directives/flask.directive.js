@@ -1,4 +1,4 @@
-angular.module('flaskDirective', []).directive([function() {
+angular.module('flaskDirective', []).directive('flask', [function() {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

@@ -1,19 +1,6 @@
-<div class="text">
+<p class="toggle" ng-click="flaskMode = !flaskMode"><i class="fa fa-flask"></i></p>
 
-<section>
-    <h2>Education</h2>
-    <h3>University of Washington</h3>
-    <p class="time"><time datetime="2008-09-01">2008</time> - <time datetime="2012-12-15">2012</time></p>
-    <ul>
-        <li>Bachelor of Arts, Anthropology</li>
-        <li>Minor in Mathematics</li>
-        <li>Coursework in Java, web programming, Unic, and Matlab</li>
-    </ul>
-
-    <h3>Foothill Community College</h3>
-    <p class="time"><time datetime="2006-09-01">2006</time> - <time datetime="2007-06-01">2007</time></p>
-    <p>Computer science classes concurrently with high school.</p>
-</section>
+<div class="text" flask="{{flaskMode}}">
 
 <section>
     <h2>Experience</h2>
@@ -41,6 +28,43 @@
     <p class="time"><time datetime="2010-09-01">Sept 2010</time> - <time datetime="2012-11-01">Nov 2012</time></p>
     <h4>Roller Skating Supervisor</h4>
     <p>Taught basic skating skills, gave out rental skates, monitored and enforced safety rules</p>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <ul class="skills">
+        <li>Python</li>
+        <li>Java</li>
+        <li>Javascript</li>
+        <li>SQL</li>
+        <li>Angular.js</li>
+        <li>JQuery</li>
+        <li>Django</li>
+        <li>Flask</li>
+        <li>Pylons</li>
+        <li>Play! Framework</li>
+        <li>RESTful</li>
+        <li>MVC<li>
+        <li>Git</li>
+        <li>SVN</li>
+        <li>Bash</li>
+        <li>Linux</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <h3>University of Washington</h3>
+    <p class="time"><time datetime="2008-09-01">2008</time> - <time datetime="2012-12-15">2012</time></p>
+    <h4>Bachelor of Arts, Anthropology</h4>
+    <ul>
+        <li>Minor in Mathematics</li>
+        <li>Coursework in Java, web programming, Unic, and Matlab</li>
+    </ul>
+
+    <h3>Foothill Community College</h3>
+    <p class="time"><time datetime="2006-09-01">2006</time> - <time datetime="2007-06-01">2007</time></p>
+    <p>Computer science classes concurrently with high school.</p>
 </section>
 
 </div>
