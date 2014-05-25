@@ -53,8 +53,31 @@ dd {
     color: white;
 }
 
-.text p {
+.text > p {
     margin: 20px 10px;
+}
+
+.text section {
+    margin-bottom: 1em;
+}
+
+.text h2 {
+    font-family: sans-serif;
+    margin-bottom: .5em;
+}
+
+.text h3 {
+    margin-top: 1em;
+    font-size: 11pt;
+}
+
+.text h4 {
+    font-weight: normal;
+    font-style: italic;
+}
+
+.text .time {
+    float: right;
 }
 
 q a {
