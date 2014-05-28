@@ -96,4 +96,6 @@ q a {
 .toggle {
     text-align: center;
     font-size: 15pt;
+    color: blue;
+    cursor: pointer;
 }
