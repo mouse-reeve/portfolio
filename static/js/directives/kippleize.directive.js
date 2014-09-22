@@ -2,18 +2,42 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
     return {
         restrict: 'A',
         scope: {
+            lineLength: '@',
             startPoints: '@'
         },
         link: function (scope, element, attrs) {
             var text = element[0].childNodes[0].data;
-            var lines = text.split('\n');
-            var original = angular.copy(lines);
+            var lines = [];
+
+            var lineLength = +scope.lineLength;
+
+            var cursor = 0;
+            while (cursor < text.length) {
+                var end = lineLength;
+                var line = text.substring(cursor, cursor+end);
+                line = line.trim();
+                if (line.search(/\n/) !== -1) {
+                    end = line.search(/\n/);
+                    line = line.substring(0, end);
+                } else if (line.slice(-1) !== ' ' && cursor + lineLength < text.length) {
+                    lastSpace = line.lastIndexOf(' ');
+                    if (lastSpace !== -1) {
+                        end = lastSpace;
+                        line = line.substring(0, end);
+                    }
+                }
+
+                cursor += end + 1;
+                lines.push(line);
+            }
+
+            element[0].childNodes[0].data = lines.join('\n');
+
 
             var replacement = '*';
             var promises = [];
             
             var iteration = function() {
-                console.log('tick');
                 letters = lines[this.line].split('');
                 letters[this.letter] = replacement;
                 lines[this.line] = letters.join('');
