@@ -14,6 +14,7 @@ angular.module('app', [
         'flaskDirective',
         'shuffleDirective',
         'thesaurusDirective',
+        'kippleizeDirective',
 
         'ngRoute'])
 
@@ -32,6 +33,9 @@ angular.module('app', [
         })
         .when('/thesaurus', {
             templateUrl: 'static/partials/thesaurus.html'
+        })
+        .when('/kipple', {
+            templateUrl: 'static/partials/kipple.html'
         })
         .when('/resume', {
             controller: 'ResumeCtrl',
