@@ -1,4 +1,4 @@
-angular.module('timeToRomanFilter', []).filter('timeToRoman', function() {
+angular.module('timeToRomanFilter', []).filter('timeToRoman', function () {
     return function (input) {
         var buckets = [[50, 'L'], [10, 'X'], [5, 'V'], [1, 'I']];
         var numbers = input.split(':');
@@ -30,5 +30,5 @@ angular.module('timeToRomanFilter', []).filter('timeToRoman', function() {
         };
         return numbers.join(':');
     };
-})
+});
 

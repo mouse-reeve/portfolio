@@ -1,11 +1,8 @@
 from flask import Flask, request, make_response, g
 
-import os
-
 # CONFIG
 DEBUG = True
 app = Flask(__name__)
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 # ROUTES
 @app.route('/')

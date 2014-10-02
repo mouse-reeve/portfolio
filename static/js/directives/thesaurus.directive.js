@@ -1,11 +1,12 @@
-angular.module('thesaurusDirective', []).directive('thesaurus', ['$timeout', function($timeout) {
+angular.module('thesaurusDirective', []).directive('thesaurus', ['$timeout', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
             var text = element[0].childNodes[0].data;
             var words = text.split(' ');
             var place = 0;
-            var tick = function() {
+
+            var tick = function () {
                 if (place >= words.length) {
                     place = 0;
                 }
@@ -43,7 +44,7 @@ angular.module('thesaurusDirective', []).directive('thesaurus', ['$timeout', fun
             }
             var timeout = $timeout(tick, 0);
 
-            scope.$on('$destroy', function() {
+            scope.$on('$destroy', function () {
                 $timeout.cancel(timeout);
             });
         }

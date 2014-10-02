@@ -1,4 +1,4 @@
-angular.module('flaskDirective', []).directive('flask', [function() {
+angular.module('flaskDirective', []).directive('flask', [function () {
     return {
         restrict: 'A',
         scope: {
@@ -8,6 +8,7 @@ angular.module('flaskDirective', []).directive('flask', [function() {
             var original = element[0].innerHTML;
             var html = element[0].innerHTML.split(/\b/);
             var inTag = false;
+
             for (var i=0; i<html.length; i++) {
                 var item = html[i];
                 var display = !inTag;
@@ -46,7 +47,7 @@ angular.module('flaskDirective', []).directive('flask', [function() {
                 }
             }
 
-            scope.$watch('toggle', function(flaskMode) {
+            scope.$watch('toggle', function (flaskMode) {
                 if (flaskMode === "true") {
                     element[0].innerHTML = html.join('');
                 } else {

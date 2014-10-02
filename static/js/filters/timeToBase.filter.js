@@ -1,4 +1,4 @@
-angular.module('timeToBaseFilter', []).filter('timeToBase', function() {
+angular.module('timeToBaseFilter', []).filter('timeToBase', function () {
     return function (input, radix, noDelimiter) {
         var numbers = input.split(':');
         for (var i=0; i<numbers.length; i++) {
@@ -12,5 +12,5 @@ angular.module('timeToBaseFilter', []).filter('timeToBase', function() {
         }
         return numbers.join(':');
     };
-})
+});
 

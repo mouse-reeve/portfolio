@@ -1,7 +1,8 @@
-angular.module('timeToNegativeBaseFilter', []).filter('timeToNegativeBase', function() {
+angular.module('timeToNegativeBaseFilter', []).filter('timeToNegativeBase', function () {
     return function (input, radix, noDelimiter) {
         radix = -radix;
         var numbers = input.split(':');
+
         for (var i=0; i<numbers.length; i++) {
             var number = numbers[i];
             var result = 0;
@@ -24,7 +25,6 @@ angular.module('timeToNegativeBaseFilter', []).filter('timeToNegativeBase', func
             numbers[i] = numbers[i].length < 2 ? '0' + numbers[i] : numbers[i];
         }
         return numbers.join(':');
-                
     };
-})
+});
 

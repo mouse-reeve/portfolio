@@ -1,4 +1,4 @@
-function MainCtrl($location, $scope, $http) {
+function MainCtrl($location, $scope) {
     $scope.text = 'it\'s ok to be confused';
     $scope.pages = ['clocks', 'chomsky', 'thesaurus', 'resume', 'about'];
 

@@ -1,4 +1,4 @@
-angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', function($timeout) {
+angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', function ($timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -9,6 +9,7 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
             var text = element[0].childNodes[0].data;
             var lines = [];
 
+            // wraps text at a given line length
             var lineLength = +scope.lineLength;
 
             var cursor = 0;
@@ -33,11 +34,11 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
 
             element[0].childNodes[0].data = lines.join('\n');
 
-
+            // kipple at work
             var replacement = '*';
             var promises = [];
             
-            var iteration = function() {
+            var iteration = function () {
                 letters = lines[this.line].split('');
                 letters[this.letter] = replacement;
                 lines[this.line] = letters.join('');

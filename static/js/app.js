@@ -18,7 +18,7 @@ angular.module('app', [
 
         'ngRoute'])
 
-.config(function($routeProvider) {
+.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             controller: 'MainCtrl',
@@ -48,6 +48,4 @@ angular.module('app', [
             redirectTo: '/'
         });
 })
-.run(function($http) {
-    $http.defaults.useXDomain = true;
-})
+
