@@ -99,3 +99,12 @@ q a {
     color: blue;
     cursor: pointer;
 }
+
+#external a {
+    font-size: 2em;
+    color: black;
+}
+
+.card {
+    margin-bottom: 1em;
+}
