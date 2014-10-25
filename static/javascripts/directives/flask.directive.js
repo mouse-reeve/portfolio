@@ -22,10 +22,10 @@ angular.module('flaskDirective', []).directive('flask', [function () {
                     inTag = true;
                     display = false;
                 }
-                
+
                 if (display) {
                     var flask = ' flask';
-                    if (item.match(/^[\.\,\!\?\-].$|\//) || 
+                    if (item.match(/^[\.\,\!\?\-].$|\//) ||
                                 (!isNaN(parseFloat(item)) && item == parseFloat(item)) ||
                                 item.match(/^[\s]+$/)) {
                         flask = item;
@@ -36,7 +36,7 @@ angular.module('flaskDirective', []).directive('flask', [function () {
                         if (item.toUpperCase() === item) {
                             flask = flask.toUpperCase();
                         } else if (first.toLowerCase() !== first) {
-                            flask = " Flask"
+                            flask = ' Flask'
                         }
                         var ending = item.match(/ing$|ed$|s$|ful$|ular$|ly$/);
                         if (ending) {
@@ -48,7 +48,7 @@ angular.module('flaskDirective', []).directive('flask', [function () {
             }
 
             scope.$watch('toggle', function (flaskMode) {
-                if (flaskMode === "true") {
+                if (flaskMode === 'true') {
                     element[0].innerHTML = html.join('');
                 } else {
                     element[0].innerHTML = original;

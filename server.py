@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, g
+from flask import Flask, make_response
 
 # CONFIG
 DEBUG = True

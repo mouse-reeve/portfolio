@@ -24,7 +24,7 @@ angular.module('timeToNegativeBaseFilter', []).filter('timeToNegativeBase', func
             numbers[i] = result + '';
             numbers[i] = numbers[i].length < 2 ? '0' + numbers[i] : numbers[i];
         }
-        return numbers.join(':');
+        return noDelimiter ? numbers.join('') : numbers.join(':');
     };
 });
 

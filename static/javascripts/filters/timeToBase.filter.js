@@ -7,10 +7,7 @@ angular.module('timeToBaseFilter', []).filter('timeToBase', function () {
                 numbers[i] = '0' + numbers[i];
             }
         }
-        if (noDelimiter) {
-            return numbers.join('');
-        }
-        return numbers.join(':');
+        return noDelimiter ? numbers.join('') : numbers.join(':');
     };
 });
 

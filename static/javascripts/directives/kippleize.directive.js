@@ -37,7 +37,7 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
             // kipple at work
             var replacement = '*';
             var promises = [];
-            
+
             var iteration = function () {
                 letters = lines[this.line].split('');
                 letters[this.letter] = replacement;
@@ -90,7 +90,7 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
                 promises.push(timeout);
             }
 
-            scope.$on('$destroy', function() {
+            scope.$on('$destroy', function () {
                 for (var i=0; i<promises.length; i++) {
                     $timeout.cancel(promises[i]);
                 }
