@@ -3,7 +3,7 @@ function MainCtrl($location, $scope) {
     $scope.pages = ['clocks', 'chomsky', 'thesaurus', 'resume', 'about'];
 
     $scope.randomPage = function () {
-        var page = Math.floor(Math.random()*$scope.pages.length);
+        var page = Math.floor(Math.random() * $scope.pages.length);
         $location.path($scope.pages[page]);
     };
 }

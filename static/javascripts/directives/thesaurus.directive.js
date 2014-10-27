@@ -20,12 +20,12 @@ angular.module('thesaurusDirective', []).directive('thesaurus', ['$timeout', fun
                     }
                     if (word.slice(-1).match(/[,\.]/) !== null) {
                         punctuation = word.slice(-1);
-                        word = word.slice(0,-1);
+                        word = word.slice(0, -1);
                     }
 
                     if (thesaurus[word]) {
                         synonyms = thesaurus[word];
-                        var rand = Math.floor(Math.random()*synonyms.length);
+                        var rand = Math.floor(Math.random() * synonyms.length);
                         word = synonyms[rand];
                         if (capitalize) {
                             word = word.slice(0, 1).toUpperCase() + word.slice(1);

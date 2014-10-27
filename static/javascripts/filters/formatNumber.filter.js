@@ -3,8 +3,7 @@ angular.module('formatNumberFilter', []).filter('formatNumber', function () {
         var dec = !!decimals && angular.isNumber(decimals) ? decimals : 0;
         if (!!input || input === 0) {
             return (String((+input).toFixed(dec))).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        } else {
-            return '';
         }
+        return '';
     };
 });

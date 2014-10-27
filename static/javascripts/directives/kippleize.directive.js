@@ -13,9 +13,10 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
             var lineLength = +scope.lineLength;
 
             var cursor = 0;
+            var end, line, lastSpace;
             while (cursor < text.length) {
-                var end = lineLength;
-                var line = text.substring(cursor, cursor+end);
+                end = lineLength;
+                line = text.substring(cursor, cursor + end);
                 line = line.trim();
                 if (line.search(/\n/) !== -1) {
                     end = line.search(/\n/);
@@ -39,7 +40,7 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
             var promises = [];
 
             var iteration = function () {
-                letters = lines[this.line].split('');
+                var letters = lines[this.line].split('');
                 letters[this.letter] = replacement;
                 lines[this.line] = letters.join('');
 
@@ -58,17 +59,17 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
                 var toggle = Math.round(Math.random());
                 var randomizer = Math.floor(Math.random() * 500);
 
-                angular.forEach(directions[toggle], function (direction, index) {
+                angular.forEach(directions[toggle], function (direction) {
                     if (direction.line in lines &&
                             direction.letter in lines[direction.line].split('') &&
                             lines[direction.line].split('')[direction.letter] !== replacement) {
-                        var promise = $timeout(iteration.bind({line: direction.line, letter: direction.letter}), 750+randomizer);
+                        var promise = $timeout(iteration.bind({line: direction.line, letter: direction.letter}), 750 + randomizer);
                         promises.push(promise);
                     }
                 });
 
                 var isolated = true;
-                angular.forEach(directions[1-toggle], function (direction, index) {
+                angular.forEach(directions[1 - toggle], function (direction) {
                     if (direction.line in lines &&
                             direction.letter in lines[direction.line].split('') &&
                             lines[direction.line].split('')[direction.letter] !== replacement) {
@@ -77,16 +78,17 @@ angular.module('kippleizeDirective', []).directive('kippleize', ['$timeout', fun
                 });
 
                 if (!isolated) {
-                    var promise = $timeout(iteration.bind({line: this.line, letter: this.letter}), 750+randomizer);
+                    var promise = $timeout(iteration.bind({line: this.line, letter: this.letter}), 750 + randomizer);
                     promises.push(promise);
                 }
             };
 
+            var startLine, startLetter, timeout;
             for (var i=0; i<scope.startPoints; i++) {
-                var startLine = Math.floor(Math.random() * lines.length);
-                var startLetter = Math.floor(Math.random() * lines[startLine].length);
+                startLine = Math.floor(Math.random() * lines.length);
+                startLetter = Math.floor(Math.random() * lines[startLine].length);
 
-                var timeout = $timeout(iteration.bind({line: startLine, letter: startLetter}), 1000*(2*(i+1)));
+                timeout = $timeout(iteration.bind({line: startLine, letter: startLetter}), 1000*(2*(i+1)));
                 promises.push(timeout);
             }
 
