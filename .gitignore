@@ -5,3 +5,7 @@
 
 *.psd
 *.swp
+
+bin/
+include/
+lib/
