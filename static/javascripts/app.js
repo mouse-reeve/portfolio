@@ -2,6 +2,7 @@ angular.module('app', [
     'formatNumberFilter',
 
     // clock filters
+    'percentLifeElapsedFilter',
     'percentTimeElapsedFilter',
     'percentTimeLeftFilter',
     'reverseTimeFilter',
