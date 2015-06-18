@@ -13,48 +13,33 @@ h1 small {
     color: #c0c0c0;
 }
 
-dl {
-    overflow: auto;
-}
-
-dt {
-    font-weight: bold;
-    float: left;
-    width: 15em;
-    clear: both;
-}
-dd {
-    padding: 5px;
-    float: left;
-}
-
 .clock {
     float: left;
     width: 12em;
     height: 2em;
-    border: 1px;
-    padding: 10px;
-    margin: 5px;
+    border: .1em;
+    padding: .5em;
+    margin: .2em;
     text-align: center;
 }
 
 .label {
     text-transform: uppercase;
     font-family: sans-serif;
-    font-size: 8pt;
+    font-size: .65em;
     color: #c0c0c0;
 }
 
 .time {
     font-family: monospace;
-    padding: 5px;
+    padding: .2em;
 }
 .color-time {
     color: white;
 }
 
 .text > p {
-    margin: 20px 10px;
+    margin: .8em 0;
 }
 
 .text section {
@@ -70,7 +55,7 @@ dd {
 
 .text h3 {
     margin-top: 1em;
-    font-size: 11pt;
+    font-size: .85em;
 }
 
 .text h4 {
@@ -85,7 +70,7 @@ dd {
 .skills li {
     list-style: none;
     float: left;
-    padding-right: 15px;
+    padding-right: .8em;
 }
 
 q a {
@@ -95,7 +80,7 @@ q a {
 
 .toggle {
     text-align: center;
-    font-size: 15pt;
+    font-size: 1.2em;
     color: blue;
     cursor: pointer;
 }
