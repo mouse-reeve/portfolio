@@ -93,3 +93,7 @@ q a {
 .card {
     margin-bottom: 1em;
 }
+
+img {
+    max-width: 100%;
+}
