@@ -39,6 +39,10 @@ angular.module('app', [
             .when('/kipple', {
                 templateUrl: 'static/partials/kipple.html'
             })
+            .when('/flora', {
+                controller: 'FloraCtrl',
+                templateUrl: 'static/partials/flora.html'
+            })
             .when('/resume', {
                 controller: 'ResumeCtrl',
                 templateUrl: 'static/partials/resume.html'
