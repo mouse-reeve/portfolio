@@ -1,7 +1,9 @@
 <p>-- five flowers --</p>
 <div class="card">
     <ul>
-        <li ng-repeat="name in names">{{ name }}</li>
+        <li ng-repeat="name in names">
+            {{ name.common }} (<em>{{ name.genus }} {{name.species}}</em>)
+        </li>
     </ul>
 </div>
 

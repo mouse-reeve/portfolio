@@ -10,6 +10,15 @@ function FloraCtrl($scope) {
         return generateWords(species_links);
     };
 
+    var getCommon = function () {
+        var name = pick(commonFirst);
+        if (Math.random() > 0.5 ) {
+            name += ' ' + pick(commonFirst);
+        }
+        name += ' ' + pick(commonSecond);
+        return name;
+    };
+
     var generateWords = function (links, word) {
         var initial = '>';
         var terminal = '<';
@@ -29,6 +38,7 @@ function FloraCtrl($scope) {
     };
 
     for (var i = 0; i < 5; i++) {
-        $scope.names.push(getGenus() + ' ' + getSpecies());
+        var flower = {'genus': getGenus(), 'species': getSpecies(), 'common': getCommon()};
+        $scope.names.push(flower);
     }
 }
