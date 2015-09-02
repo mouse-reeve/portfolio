@@ -1,4 +1,8 @@
 angular.module('app', [
+    // services
+    'floraService',
+
+    // filters
     'formatNumberFilter',
 
     // clock filters
@@ -54,4 +58,3 @@ angular.module('app', [
                 redirectTo: '/'
             });
     });
-
