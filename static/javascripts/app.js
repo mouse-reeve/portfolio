@@ -47,9 +47,6 @@ angular.module('app', [
                 controller: 'FloraCtrl',
                 templateUrl: 'static/partials/flora.html'
             })
-            .when('/facts', {
-                templateUrl: 'static/partials/facts.html'
-            })
             .when('/resume', {
                 controller: 'ResumeCtrl',
                 templateUrl: 'static/partials/resume.html'
