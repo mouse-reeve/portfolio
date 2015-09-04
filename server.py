@@ -2,7 +2,6 @@
 from flask import Flask, make_response
 
 # CONFIG
-DEBUG = True
 app = Flask(__name__)
 
 # ROUTES
