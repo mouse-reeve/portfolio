@@ -13,6 +13,10 @@ h1 small {
     color: #c0c0c0;
 }
 
+.navigation a {
+    margin-right: 0.25em;
+}
+
 .clock {
     float: left;
     width: 12em;
