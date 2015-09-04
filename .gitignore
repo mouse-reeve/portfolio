@@ -6,7 +6,7 @@ pip-selfcheck.json
 .idea/
 *.iml
 
-*.psd
+*.pyc
 *.swp
 
 bin/
