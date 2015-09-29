@@ -9,7 +9,12 @@ flora = NominaFlora()
 # ROUTES
 @app.route('/')
 def index():
-    ''' Render the basic template for angular '''
+    ''' render the basic template for angular '''
+    return make_response(open('index.html').read())
+
+@app.route('/<path>')
+def angular(path):
+    ''' render the basic template for angular '''
     return make_response(open('index.html').read())
 
 # the fun stuff API
