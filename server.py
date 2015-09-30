@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import Flask, make_response
 import json
 from nominaflora.NominaFlora import NominaFlora
+import os
 from sqlalchemy.orm.exc import NoResultFound
 
 import activity
@@ -10,7 +11,7 @@ import activity
 # CONFIG
 app = Flask(__name__)
 flora = NominaFlora()
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portfolio'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 import models
