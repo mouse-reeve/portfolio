@@ -28,10 +28,14 @@ def duolingo():
 
 def twitter():
     ''' twitter activity '''
-    auth = tweepy.OAuthHandler(os.environ['TWITTER_API_KEY'],
-                               os.environ['TWITTER_API_SECRET'])
-    auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'],
-                          os.environ['TWITTER_ACCESS_SECRET'])
+    try:
+        auth = tweepy.OAuthHandler(os.environ['TWITTER_API_KEY'],
+                                   os.environ['TWITTER_API_SECRET'])
+        auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'],
+                              os.environ['TWITTER_ACCESS_SECRET'])
+    except KeyError:
+        return 0
+
     api = tweepy.API(auth)
     try:
         api.verify_credentials()
@@ -46,9 +50,13 @@ def twitter():
 
 def instagram():
     ''' instagram activity '''
-    data = urllib2.urlopen('https://api.instagram.com/v1/users/%s/media/recent/?client_id=%s' %
-                           (os.environ['IG_USER_ID'],
-                            os.environ['IG_CLIENT_ID']))
+    try:
+        data = urllib2.urlopen('https://api.instagram.com/v1/users/%s/media/recent/?client_id=%s' %
+                               (os.environ['IG_USER_ID'],
+                                os.environ['IG_CLIENT_ID']))
+    except KeyError:
+        return 0
+
     data = json.loads(data.read())
     links = ['' for item in data['data'] \
             if datetime.fromtimestamp(int(item['created_time'])).isoformat()[:10] == today]
