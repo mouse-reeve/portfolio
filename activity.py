@@ -38,7 +38,7 @@ def twitter():
         return 0
 
     tweets = api.user_timeline('tripofmice')
-    tweets = [item.text for item in tweets if item.created_at.isoformat()[:10] == today]
+    tweets = ['' for item in tweets if item.created_at.isoformat()[:10] == today]
 
     return len(tweets)
 
@@ -49,6 +49,6 @@ def instagram():
                            (settings.IG_USER_ID,
                             settings.IG_CLIENT_ID))
     data = json.loads(data.read())
-    links = [item for item in data['data'] \
+    links = ['' for item in data['data'] \
             if datetime.fromtimestamp(int(item['created_time'])).isoformat()[:10] == today]
     return len(links)

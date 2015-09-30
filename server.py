@@ -1,13 +1,21 @@
 ''' Simple webserver and API routing '''
+from datetime import datetime
 from flask import Flask, make_response
 import json
 from nominaflora.NominaFlora import NominaFlora
+from sqlalchemy.orm.exc import NoResultFound
 
 import activity
 
 # CONFIG
 app = Flask(__name__)
 flora = NominaFlora()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portfolio'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+import models
+
+models.db.init_app(app)
 
 # ROUTES
 @app.route('/')
@@ -39,6 +47,13 @@ def get_activity():
 
     # Daily total
     activity_data['all'] = reduce(lambda x, y: x+y, activity_data.values())
+
+    try:
+        today = models.get_activity(datetime.today())
+        today.update_activity(activity_data)
+    except NoResultFound:
+        entry = models.Activity(datetime.today(), activity_data)
+        entry.save()
 
     return json.dumps(activity_data)
 
