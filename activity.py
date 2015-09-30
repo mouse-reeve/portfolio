@@ -1,11 +1,10 @@
 ''' gets counts of today's activity '''
 from datetime import datetime
 import json
+import os
 import tweepy
 from tweepy.error import TweepError
 import urllib2
-
-import settings
 
 today = datetime.today().isoformat()[:10]
 
@@ -29,8 +28,10 @@ def duolingo():
 
 def twitter():
     ''' twitter activity '''
-    auth = tweepy.OAuthHandler(settings.TWITTER_API_KEY, settings.TWITTER_API_SECRET)
-    auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_SECRET)
+    auth = tweepy.OAuthHandler(os.environ['TWITTER_API_KEY'],
+                               os.environ['TWITTER_API_SECRET'])
+    auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'],
+                          os.environ['TWITTER_ACCESS_SECRET'])
     api = tweepy.API(auth)
     try:
         api.verify_credentials()
@@ -46,8 +47,8 @@ def twitter():
 def instagram():
     ''' instagram activity '''
     data = urllib2.urlopen('https://api.instagram.com/v1/users/%s/media/recent/?client_id=%s' %
-                           (settings.IG_USER_ID,
-                            settings.IG_CLIENT_ID))
+                           (os.environ['IG_USER_ID'],
+                            os.environ['IG_CLIENT_ID']))
     data = json.loads(data.read())
     links = ['' for item in data['data'] \
             if datetime.fromtimestamp(int(item['created_time'])).isoformat()[:10] == today]
