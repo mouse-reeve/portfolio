@@ -35,7 +35,10 @@ class Activity(db.Model):
         db.session.add(self)
         db.session.commit()
 
-def get_activity(date):
+def get_activity(date=None):
     ''' find activity for a given day '''
-    return db.session.query(Activity)\
-           .filter(Activity.day == date.isoformat()[:10]).one()
+    if date:
+        return db.session.query(Activity)\
+               .filter(Activity.day == date.isoformat()[:10]).one()
+    else:
+        return db.session.query(Activity).all()

@@ -36,9 +36,20 @@ def flower_names():
     name = {'common': flora.get_common_name(), 'scientific': flora.get_scientific_name()}
     return json.dumps(name)
 
+
 @app.route('/api/activity', methods=['GET'])
 def get_activity():
-    ''' load my activity for the day '''
+    ''' load activity from all time '''
+    data = []
+    activity_data = models.get_activity()
+    for item in activity_data:
+        data.append(item.serialize())
+
+    return json.dumps(data)
+
+@app.route('/api/activity', methods=['PUT'])
+def update_activity():
+    ''' update today's activity '''
     activity_data = {
         'GitHub': activity.github(),
         'Duolingo': activity.duolingo(),
