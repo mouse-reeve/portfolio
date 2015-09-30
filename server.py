@@ -1,6 +1,7 @@
 ''' Simple webserver and API routing '''
 from flask import Flask, make_response
 from nominaflora.NominaFlora import NominaFlora
+import json
 
 # CONFIG
 app = Flask(__name__)
@@ -21,8 +22,8 @@ def angular(path):
 @app.route('/api/flora', methods=['GET'])
 def flower_names():
     ''' returns a made up flower name '''
-    name = '%s (%s)' % (flora.get_common_name(), flora.get_scientific_name())
-    return name
+    name = {'common': flora.get_common_name(), 'scientific': flora.get_scientific_name()}
+    return json.dumps(name)
 
 if __name__ == '__main__':
     app.debug = True
