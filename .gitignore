@@ -13,4 +13,4 @@ bin/
 include/
 lib/
 
-settings.py
+*.sh
