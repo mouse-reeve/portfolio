@@ -12,3 +12,5 @@ pip-selfcheck.json
 bin/
 include/
 lib/
+
+settings.py
