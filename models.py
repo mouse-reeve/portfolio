@@ -1,6 +1,5 @@
 ''' Postgres schema '''
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy.dialects.postgres import JSON
 
 db = SQLAlchemy()
 
@@ -11,34 +10,33 @@ class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created = db.Column(db.DateTime, server_default=db.func.now())
     updated = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
-    day = db.Column(db.String, unique=True)
-    activity = db.Column(JSON)
+    time = db.Column(db.DateTime)
+    site = db.Column(db.String(50))
+    action = db.Column(db.String(50))
+    link = db.Column(db.String(300))
+    reference = db.Column(db.String(300), unique=True)
 
-    def __init__(self, date, activity):
-        self.day = date.isoformat()[:10]
-        self.activity = activity
+    def __init__(self, time, site, action, link, reference):
+        self.time = time,
+        self.site = site
+        self.action = action
+        self.link = link
+        self.reference = reference
 
     def serialize(self):
         ''' json to return to client '''
         return {
-            'day': self.day,
-            'activity': self.activity
+            'time': self.time.isoformat(),
+            'site': self.site,
+            'action': self.action,
+            'link': self.link
         }
-
-    def update_activity(self, activity):
-        ''' update today's activity '''
-        self.activity = activity
-        db.session.commit()
 
     def save(self):
         ''' save a new entry '''
         db.session.add(self)
         db.session.commit()
 
-def get_activity(date=None):
+def get_activity():
     ''' find activity for a given day '''
-    if date:
-        return db.session.query(Activity)\
-               .filter(Activity.day == date.isoformat()[:10]).one()
-    else:
-        return db.session.query(Activity).all()
+    return db.session.query(Activity).all()

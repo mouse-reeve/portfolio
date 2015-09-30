@@ -1,5 +1,6 @@
 angular.module('app', [
     // services
+    'activityService',
     'floraService',
 
     // filters
@@ -53,6 +54,11 @@ angular.module('app', [
                 title: 'Flora',
                 controller: 'FloraCtrl',
                 templateUrl: 'static/partials/flora.html'
+            })
+            .when('/activity', {
+                title: 'Activity',
+                controller: 'ActivityCtrl',
+                templateUrl: 'static/partials/activity.html'
             })
             .when('/resume', {
                 title: 'Resume',

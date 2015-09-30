@@ -1,0 +1,4 @@
+<p ng-repeat="item in activity | orderBy:'time':-1">
+    {{ item.time | date : 'medium' }}:
+    {{ item.site }} (<a href="{{ item.link }}">{{ item.action }}</a>)
+</p>

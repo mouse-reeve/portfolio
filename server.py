@@ -1,12 +1,9 @@
 ''' Simple webserver and API routing '''
-from datetime import datetime
 from flask import Flask, make_response
 import json
 from nominaflora.NominaFlora import NominaFlora
 import os
 from sqlalchemy.orm.exc import NoResultFound
-
-import activity
 
 # CONFIG
 app = Flask(__name__)
@@ -15,6 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 import models
+import activity
 
 models.db.init_app(app)
 
@@ -47,27 +45,6 @@ def get_activity():
 
     return json.dumps(data)
 
-@app.route('/api/activity', methods=['PUT'])
-def update_activity():
-    ''' update today's activity '''
-    activity_data = {
-        'GitHub': activity.github(),
-        'Duolingo': activity.duolingo(),
-        'Twitter': activity.twitter(),
-        'Instagram': activity.instagram(),
-    }
-
-    # Daily total
-    activity_data['all'] = reduce(lambda x, y: x+y, activity_data.values())
-
-    try:
-        today = models.get_activity(datetime.today())
-        today.update_activity(activity_data)
-    except NoResultFound:
-        entry = models.Activity(datetime.today(), activity_data)
-        entry.save()
-
-    return json.dumps(activity_data)
 
 if __name__ == '__main__':
     app.debug = True
