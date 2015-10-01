@@ -12,9 +12,9 @@ from server import models
 
 today = datetime.today().isoformat()[:10]
 
-def github():
+def github(page=1):
     ''' github activity '''
-    data = urllib2.urlopen('https://api.github.com/users/mouse-reeve/events/public')
+    data = urllib2.urlopen('https://api.github.com/users/mouse-reeve/events/public?page=%d' % page)
     data = json.loads(data.read())
 
     site = 'GitHub'
@@ -41,11 +41,6 @@ def github():
                 activity.save()
             except IntegrityError:
                 models.db.session.rollback()
-
-    counts = [item['payload']['size'] if 'size' in item['payload'] else 1 \
-              for item in data if item['created_at'][:10] == today]
-    count = reduce(lambda x, y: x+y, counts)
-    return count
 
 
 def twitter():
