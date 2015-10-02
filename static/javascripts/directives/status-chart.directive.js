@@ -2,9 +2,12 @@ angular.module('statuschartDirective', []).directive('statuschart', [function ()
     return {
         restrict: 'E',
         scope: {
-            data: '=?'
+            data: '=?',
+            showActivity: '=?',
+            showCalendar: '=?'
         },
         link: function (scope) {
+            scope.showCalendar = scope.showCalendar !== false ? true : false;
             scope.filterValue = null;
 
             scope.range = function (num) {

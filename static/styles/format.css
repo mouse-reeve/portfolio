@@ -112,3 +112,8 @@ img {
     float: left;
     margin-right: 0.2em;
 }
+
+.status-spacer {
+    width: 2em;
+    height: 0;
+}
