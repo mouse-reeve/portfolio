@@ -21,6 +21,7 @@ angular.module('app', [
     'shuffleDirective',
     'thesaurusDirective',
     'kippleizeDirective',
+    'statuschartDirective',
 
     'ngRoute'])
 

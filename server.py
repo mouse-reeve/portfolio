@@ -1,9 +1,9 @@
 ''' Simple webserver and API routing '''
+from datetime import datetime, timedelta
 from flask import Flask, make_response
 import json
 from nominaflora.NominaFlora import NominaFlora
 import os
-from sqlalchemy.orm.exc import NoResultFound
 
 # CONFIG
 app = Flask(__name__)
@@ -12,7 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 import models
-import activity
 
 models.db.init_app(app)
 
@@ -39,11 +38,18 @@ def flower_names():
 def get_activity():
     ''' load activity from all time '''
     data = []
-    activity_data = models.get_activity()
-    for item in activity_data:
-        data.append(item.serialize())
+    limit = datetime.now() - timedelta(days=14)
+    activity_data = models.get_activity(limit)
 
-    return json.dumps(data)
+    stats = {'days': {}}
+    data = [item.serialize() for item in activity_data]
+
+    for day in (limit + timedelta(n) for n in range(15)):
+        stats['days'][day.isoformat()[:10]] = len([i for i in data if \
+                i['time'][:10] == day.isoformat()[:10]])
+    stats['total'] = sum(stats['days'].values())
+
+    return json.dumps({'stats': stats, 'activity': data})
 
 
 if __name__ == '__main__':

@@ -101,3 +101,14 @@ q a {
 img {
     max-width: 100%;
 }
+
+.status-chart {
+    height: 15em;
+    overflow: visible;
+    text-align: center;
+}
+
+.status-bar {
+    float: left;
+    margin-right: 0.2em;
+}

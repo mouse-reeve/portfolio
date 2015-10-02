@@ -37,6 +37,9 @@ class Activity(db.Model):
         db.session.add(self)
         db.session.commit()
 
-def get_activity():
+def get_activity(limit=None):
     ''' find activity for a given day '''
-    return db.session.query(Activity).all()
+    if limit:
+        return db.session.query(Activity).filter(Activity.time > limit).all()
+    else:
+        return db.session.query(Activity).all()
