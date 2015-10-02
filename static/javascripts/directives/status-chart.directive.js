@@ -19,6 +19,8 @@ angular.module('statuschartDirective', []).directive('statuschart', [function ()
                 if (data && 'stats' in data) {
                     scope.activity = data.activity;
                     scope.days = data.stats.days;
+                    var date = new Date();
+                    scope.filterValue = date.toISOString().substring(0, 10);
 
                     var max = 0;
                     for (var day in scope.days) {
