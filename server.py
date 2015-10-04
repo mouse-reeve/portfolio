@@ -1,9 +1,11 @@
 ''' Simple webserver and API routing '''
 from datetime import datetime, timedelta
 from flask import Flask, make_response
+from horoscope_generator import HoroscopeGenerator
 import json
 from nominaflora.NominaFlora import NominaFlora
 import os
+import random
 
 # CONFIG
 app = Flask(__name__)
@@ -51,6 +53,14 @@ def get_activity():
 
     return json.dumps({'stats': stats, 'activity': data})
 
+
+@app.route('/api/horoscope', methods=['GET'])
+def get_horoscope():
+    ''' Get a generated horoscope '''
+    sentences = []
+    for _ in range(random.randint(3, 7)):
+        sentences.append(HoroscopeGenerator.format_sentence(HoroscopeGenerator.get_sentence()))
+    return json.dumps({'horoscope': '%s.' % '. '.join(sentences)})
 
 if __name__ == '__main__':
     app.debug = True
