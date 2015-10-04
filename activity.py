@@ -1,16 +1,16 @@
-''' gets counts of today's activity '''
-from datetime import datetime
+''' gets counts of my recent online activity '''
+from datetime import datetime, timedelta
 import dateutil.parser
 import json
 import os
+import re
 from sqlalchemy.exc import IntegrityError
 import tweepy
 from tweepy.error import TweepError
 import urllib2
+from urllib import quote_plus
 
 from server import models
-
-today = datetime.today().isoformat()[:10]
 
 def github(page=1):
     ''' github activity '''
@@ -73,6 +73,42 @@ def twitter():
             activity.save()
         except IntegrityError:
             models.db.session.rollback()
+
+
+def duolingo(before=None):
+    ''' duolingo activity '''
+    url = 'https://www.duolingo.com/stream/117204017'
+    if before:
+        url = '%s?before=%s' % (url, quote_plus(before))
+
+    data = urllib2.urlopen(url)
+    data = json.loads(data.read())
+    site = 'Duolingo'
+    link = 'https://www.duolingo.com/activity_stream'
+    for item in data['events']:
+        time = item['datetime_string'].strip()
+
+        delta = None
+        if re.match(r'\d* hours ago', time):
+            delta = int(time.split()[0])
+        elif re.match('yesterday', time):
+            delta = 24
+        elif re.match(r'\d* days ago', time):
+            delta = int(time.split()[0]) * 24
+        elif re.match(r'\d* week', time):
+            delta = int(time.split()[0]) * 24 * 7
+
+        if delta:
+            time = datetime.now() - timedelta(hours=delta)
+            action = item['type']
+            reference = 'duolingo-%d' % item['id']
+
+            try:
+                activity = models.Activity(time, site, action, link, reference)
+                activity.save()
+            except IntegrityError:
+                models.db.session.rollback()
+    print data['before']
 
 
 def instagram():
