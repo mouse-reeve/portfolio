@@ -84,7 +84,7 @@ def duolingo(before=None):
     data = urllib2.urlopen(url)
     data = json.loads(data.read())
     site = 'Duolingo'
-    link = 'https://www.duolingo.com/activity_stream'
+    link = 'https://www.duolingo.com/tripofmice'
     for item in data['events']:
         time = item['datetime_string'].strip()
 
