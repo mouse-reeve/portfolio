@@ -10,7 +10,7 @@ from tweepy.error import TweepError
 import urllib2
 from urllib import quote_plus
 
-from server import models
+from server import models, app
 
 def github(page=1):
     ''' github activity '''
@@ -18,6 +18,7 @@ def github(page=1):
     data = json.loads(data.read())
 
     site = 'GitHub'
+    count = 0
     for event in data:
         time = dateutil.parser.parse(event['created_at'])
         if event['type'] == 'PushEvent':
@@ -29,6 +30,7 @@ def github(page=1):
                 try:
                     activity = models.Activity(time, site, action, link, reference)
                     activity.save()
+                    count += 1
                 except IntegrityError:
                     models.db.session.rollback()
                     break
@@ -39,8 +41,11 @@ def github(page=1):
             try:
                 activity = models.Activity(time, site, action, link, reference)
                 activity.save()
+                count += 1
             except IntegrityError:
                 models.db.session.rollback()
+
+    return {'count': count, 'next': page+1}
 
 
 def twitter():
@@ -62,6 +67,7 @@ def twitter():
     tweets = api.user_timeline('tripofmice')
 
     site = 'Twitter'
+    count = 0
     for tweet in tweets:
         time = tweet.created_at
         action = 'tweet'
@@ -71,20 +77,24 @@ def twitter():
         try:
             activity = models.Activity(time, site, action, link, reference)
             activity.save()
+            count += 1
         except IntegrityError:
             models.db.session.rollback()
 
+    return {'count': count}
 
-def duolingo(before=None):
+
+def duolingo(page=None):
     ''' duolingo activity '''
     url = 'https://www.duolingo.com/stream/117204017'
-    if before:
-        url = '%s?before=%s' % (url, quote_plus(before))
+    if page:
+        url = '%s?before=%s' % (url, quote_plus(page))
 
     data = urllib2.urlopen(url)
     data = json.loads(data.read())
     site = 'Duolingo'
     link = 'https://www.duolingo.com/tripofmice'
+    count = 0
     for item in data['events']:
         time = item['datetime_string'].strip()
 
@@ -106,9 +116,10 @@ def duolingo(before=None):
             try:
                 activity = models.Activity(time, site, action, link, reference)
                 activity.save()
+                count += 1
             except IntegrityError:
                 models.db.session.rollback()
-    print data['before']
+    return {'count': count, 'next': data['before']}
 
 
 def instagram():
@@ -122,6 +133,7 @@ def instagram():
 
     data = json.loads(data.read())
     site = 'Instagram'
+    count = 0
     for item in data['data']:
         time = datetime.fromtimestamp(int(item['created_time']))
         action = item['type']
@@ -131,5 +143,27 @@ def instagram():
         try:
             activity = models.Activity(time, site, action, link, reference)
             activity.save()
+            count += 1
         except IntegrityError:
             models.db.session.rollback()
+    return {'count': count}
+
+
+def update():
+    ''' run update functions '''
+    sites = {
+        'github': github,
+        'twitter': twitter,
+        'duolingo': duolingo,
+        'instagram': instagram
+    }
+    with app.app_context():
+        for site in sites:
+            print 'Updating %s' % site
+            result = sites[site]()
+            print 'added %s items' % result['count']
+            count = 0
+            while 'next' in result and result['count'] > 0 and count < 5:
+                result = sites[site](page=result['next'])
+                print 'added %s items' % result['count']
+                count += 1
