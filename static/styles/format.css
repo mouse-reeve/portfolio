@@ -118,3 +118,7 @@ img {
     width: 2em;
     height: 0;
 }
+
+#horoscope {
+    min-height: 5em;
+}
