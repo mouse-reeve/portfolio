@@ -13,6 +13,7 @@
     <h3 class="date-header" ng-if="filterValue">{{ filterValue | date:'EEEE, MMMM dd, yyyy'}}</h3>
     <p ng-repeat="item in activity | orderBy:'time':-1 | filter : filterValue">
         {{ item.time | date : 'h:mm:ss a' }}:
-        {{ item.site }} (<a href="{{ item.link }}" target="_blank">{{ item.action }}</a>)
+        {{ item.site }}
+        (<a href="{{ item.link }}" target="_blank" ng-if="item.site == 'Twitter' || item.site == 'Instagram'">{{ item.action }}</a><span>{{ item.action }}</span>)
     </p>
 </div>
