@@ -14,6 +14,6 @@
     <p ng-repeat="item in activity | orderBy:'time':-1 | filter : filterValue">
         {{ item.time | date : 'h:mm:ss a' }}:
         {{ item.site }}
-        (<a href="{{ item.link }}" target="_blank" ng-if="item.site == 'Twitter' || item.site == 'Instagram'">{{ item.action }}</a><span>{{ item.action }}</span>)
+        (<a href="{{ item.link }}" target="_blank" ng-if="item.site == 'Twitter' || item.site == 'Instagram'">{{ item.action }}</a><span ng-if="!(item.site == 'Twitter' || item.site == 'Instagram')">{{ item.action }}</span>)
     </p>
 </div>
