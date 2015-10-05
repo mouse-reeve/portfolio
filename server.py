@@ -28,6 +28,7 @@ def angular(path):
     ''' render the basic template for angular '''
     return make_response(open('index.html').read())
 
+
 # the fun stuff API
 @app.route('/api/flora', methods=['GET'])
 def flower_names():
