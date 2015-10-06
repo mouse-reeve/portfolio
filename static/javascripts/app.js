@@ -2,7 +2,6 @@ angular.module('app', [
     // services
     'activityService',
     'floraService',
-    'horoscopeService',
 
     // filters
     'formatNumberFilter',
@@ -19,10 +18,10 @@ angular.module('app', [
 
     // directives
     'flaskDirective',
-    'shuffleDirective',
-    'thesaurusDirective',
     'kippleizeDirective',
+    'shuffleDirective',
     'statuschartDirective',
+    'thesaurusDirective',
 
     'ngRoute'])
 
@@ -61,11 +60,6 @@ angular.module('app', [
                 title: 'Activity',
                 controller: 'ActivityCtrl',
                 templateUrl: 'static/partials/activity.html'
-            })
-            .when('/horoscope', {
-                title: 'Horoscope',
-                controller: 'HoroscopeCtrl',
-                templateUrl: 'static/partials/horoscope.html'
             })
             .when('/resume', {
                 title: 'Resume',
