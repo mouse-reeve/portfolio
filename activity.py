@@ -166,7 +166,7 @@ def update():
             result = sites[site]()
             print 'added %s items' % result['count']
             count = 0
-            while 'next' in result and result['count'] > 0 and count < 5:
+            while 'next' in result and result['count'] > 0 and count < 25:
                 result = sites[site](page=result['next'])
                 print 'added %s items' % result['count']
                 count += 1
