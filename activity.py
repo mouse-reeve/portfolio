@@ -56,13 +56,16 @@ def twitter():
         auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'],
                               os.environ['TWITTER_ACCESS_SECRET'])
     except KeyError:
-        return 0
+        print 'invalid twitter API keys'
+        return {'count': 0}
 
     api = tweepy.API(auth)
     try:
         api.verify_credentials()
-    except TweepError:
-        return 0
+    except TweepError as e:
+        print 'twitter error'
+        print e
+        return {'count': 0}
 
     tweets = api.user_timeline('tripofmice')
 
