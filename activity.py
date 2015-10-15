@@ -51,7 +51,7 @@ def github(page=1):
 def twitter():
     ''' twitter activity '''
     page = requests.get('http://www.twitter.com/tripofmice')
-    soup = BeautifulSoup(page.text)
+    soup = BeautifulSoup(page.text, 'html.parser')
     tweets = soup.find_all(class_='content')
 
     count = 0
