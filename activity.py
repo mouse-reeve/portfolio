@@ -1,12 +1,12 @@
 ''' gets counts of my recent online activity '''
+from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import dateutil.parser
 import json
 import os
 import re
+import requests
 from sqlalchemy.exc import IntegrityError
-import tweepy
-from tweepy.error import TweepError
 import urllib2
 from urllib import quote_plus
 
@@ -50,32 +50,20 @@ def github(page=1):
 
 def twitter():
     ''' twitter activity '''
-    try:
-        auth = tweepy.OAuthHandler(os.environ['TWITTER_API_KEY'],
-                                   os.environ['TWITTER_API_SECRET'])
-        auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'],
-                              os.environ['TWITTER_ACCESS_SECRET'])
-    except KeyError:
-        print 'invalid twitter API keys'
-        return {'count': 0}
+    page = requests.get('http://www.twitter.com/tripofmice')
+    soup = BeautifulSoup(page.text)
+    tweets = soup.find_all(class_='content')
 
-    api = tweepy.API(auth)
-    try:
-        api.verify_credentials()
-    except TweepError as e:
-        print 'twitter error'
-        print e
-        return {'count': 0}
-
-    tweets = api.user_timeline('tripofmice')
-
-    site = 'Twitter'
     count = 0
+    site = 'Twitter'
+    action = 'tweet'
     for tweet in tweets:
-        time = tweet.created_at
-        action = 'tweet'
-        link = 'http://twitter.com/tripofmice/status/%s' % tweet.id_str
-        reference = 'tweet-%s' % tweet.id_str
+        node = tweet.find(class_='tweet-timestamp')
+        time = node.findChild().get('data-time')
+        time = datetime.fromtimestamp(int(time))
+        link = 'http://twitter.com/%s' % node.get('href')
+        id_str = link.split('/')[-1]
+        reference = 'tweet-%s' % id_str
 
         try:
             activity = models.Activity(time, site, action, link, reference)
