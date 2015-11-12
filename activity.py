@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import dateutil.parser
+import feedparser
 import json
 import os
 import re
@@ -140,13 +141,50 @@ def instagram():
     return {'count': count}
 
 
+def goodreads():
+    ''' reading update from goodreads rss '''
+    feed = feedparser.parse('https://www.goodreads.com/user/updates_rss/22467583')
+
+    site = 'Goodreads'
+    count = 0
+
+    for item in feed.entries:
+        # Mousemousemouse finished reading 'The Amber Spyglass
+        title = item['title']
+        # remove "Mousemousemouse " name in front of title
+        title = re.sub(r'^[A-Za-z]*\s', '', title)
+        if 'finished' in title:
+            action = 'finished reading'
+        elif 'currently' in title:
+            action = 'started reading'
+        else:
+            continue
+
+        # hella jank
+        time = re.sub(r' -0.00', '', item['published'])
+        time = datetime.strptime(time, '%a, %d %b %Y %H:%M:%S')
+
+        link = item.links[0]['href']
+        reference = 'goodreads-%s' % item.id
+
+        try:
+            activity = models.Activity(time, site, action, link, reference)
+            activity.save()
+            count += 1
+        except IntegrityError:
+            models.db.session.rollback()
+
+    return {'count': count}
+
+
 def update():
     ''' run update functions '''
     sites = {
         'github': github,
         'twitter': twitter,
         'duolingo': duolingo,
-        'instagram': instagram
+        'instagram': instagram,
+        'goodreads': goodreads
     }
     with app.app_context():
         for site in sites:
