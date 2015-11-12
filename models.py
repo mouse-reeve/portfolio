@@ -12,7 +12,7 @@ class Activity(db.Model):
     updated = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
     time = db.Column(db.DateTime)
     site = db.Column(db.String(50))
-    action = db.Column(db.String(50))
+    action = db.Column(db.String(300))
     link = db.Column(db.String(300))
     reference = db.Column(db.String(300), unique=True)
 

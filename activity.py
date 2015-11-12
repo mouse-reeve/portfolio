@@ -153,12 +153,7 @@ def goodreads():
         title = item['title']
         # remove "Mousemousemouse " name in front of title
         title = re.sub(r'^[A-Za-z]*\s', '', title)
-        if 'finished' in title:
-            action = 'finished reading'
-        elif 'currently' in title:
-            action = 'started reading'
-        else:
-            continue
+        action = re.sub(r'is currently', 'started', title)
 
         # hella jank
         time = re.sub(r' -0.00', '', item['published'])
