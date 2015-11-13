@@ -26,7 +26,10 @@ angular.module('app', [
     'ngRoute'])
 
     .config(function ($locationProvider, $routeProvider) {
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
         $routeProvider
             .when('/', {

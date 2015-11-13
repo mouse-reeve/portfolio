@@ -1,4 +1,5 @@
-function ClocksCtrl($scope, $timeout) {
+angular.module('app').controller('ClocksCtrl', [
+        '$scope', '$timeout',  function($scope, $timeout) {
     $scope.clock = Date.now();
     $scope.hour = new Date().getHours();
 
@@ -12,5 +13,4 @@ function ClocksCtrl($scope, $timeout) {
     $scope.$on('$destroy', function () {
         $timeout.cancel(timeout);
     });
-}
-
+}]);
