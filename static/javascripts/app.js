@@ -17,7 +17,7 @@ angular.module('app', [
     'timeToRomanFilter',
 
     // directives
-    'flaskDirective',
+    'mouse-reeve.flask',
     'kippleizeDirective',
     'shuffleDirective',
     'statuschartDirective',
