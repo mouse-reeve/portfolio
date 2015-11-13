@@ -1,0 +1,34 @@
+{
+  "name": "angular-flasker",
+  "authors": [
+    "Mouse Reeve <mouse.reeve@gmail.com>"
+  ],
+  "description": "Replace all words in a dom element with \"flask\"",
+  "main": "flask.directive.js",
+  "moduleType": [],
+  "keywords": [
+    "nonsense"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.mousereeve.com/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.0"
+  },
+  "_release": "0848ce60bf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0848ce60bf15a077afb992cd3dace15611f6dd6f"
+  },
+  "_source": "git://github.com/mouse-reeve/angular-flasker.git",
+  "_target": "*",
+  "_originalSource": "mouse-reeve/angular-flasker",
+  "_direct": true
+}
