@@ -27,11 +27,11 @@ angular.module('statuschartDirective', []).directive('statuschart', [function ()
 
                     var max = 0;
                     for (var day in scope.days) {
-                        max = max < scope.days[day] ? scope.days[day] : max;
+                        max = max < scope.days[day].count ? scope.days[day].count : max;
                     }
 
                     for (day in scope.days) {
-                        scope.days[day] = Math.ceil(scope.days[day] / max * 10);
+                        scope.days[day].count = Math.ceil(scope.days[day].count / max * 10);
                     }
                 }
             });
