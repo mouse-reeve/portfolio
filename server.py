@@ -43,13 +43,16 @@ def get_activity():
     limit = datetime.now() - timedelta(days=14)
     activity_data = models.get_activity(limit)
 
-    stats = {'days': {}}
+    stats = {'days': []}
     data = [item.serialize() for item in activity_data]
 
     for day in (limit + timedelta(n) for n in range(15)):
-        stats['days'][day.isoformat()[:10]] = len([i for i in data if \
+        stats['days'].append({
+            'date': day.isoformat()[:10],
+            'count': len([i for i in data if \
                 i['time'][:10] == day.isoformat()[:10]])
-    stats['total'] = sum(stats['days'].values())
+            })
+    stats['total'] = sum([day['count'] for day in stats['days']])
 
     return json.dumps({'stats': stats, 'activity': data})
 
