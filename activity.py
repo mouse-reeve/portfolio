@@ -172,6 +172,28 @@ def goodreads():
     return {'count': count}
 
 
+def librarything():
+    ''' check for newly added books '''
+    feed = feedparser.parse('https://www.librarything.com/rss/recent/tripofmice')
+    site = 'LibraryThing'
+    action = 'added book'
+
+    count = 0
+    for item in feed.entries:
+        time = re.sub(r' -0.00', '', item.published)
+        time = datetime.strptime(time, '%a, %d %b %Y %H:%M:%S')
+        link = item.link
+        reference = 'librarything-%si%s' % (item.title, item.published)
+
+        try:
+            activity = models.Activity(time, site, action, link, reference)
+            activity.save()
+            count += 1
+        except IntegrityError:
+            models.db.session.rollback()
+
+    return {'count': count}
+
 def update():
     ''' run update functions '''
     sites = {
@@ -179,7 +201,8 @@ def update():
         'twitter': twitter,
         'duolingo': duolingo,
         'instagram': instagram,
-        'goodreads': goodreads
+        'goodreads': goodreads,
+        'librarything': librarything
     }
     with app.app_context():
         for site in sites:
