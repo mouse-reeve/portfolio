@@ -176,10 +176,10 @@ def librarything():
     ''' check for newly added books '''
     feed = feedparser.parse('https://www.librarything.com/rss/recent/tripofmice')
     site = 'LibraryThing'
-    action = 'added book'
 
     count = 0
     for item in feed.entries:
+        action = 'added book \'%s\'' % item.title
         time = re.sub(r' -0.00', '', item.published)
         time = datetime.strptime(time, '%a, %d %b %Y %H:%M:%S')
         link = item.link
