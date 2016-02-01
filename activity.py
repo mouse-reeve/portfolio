@@ -211,6 +211,10 @@ def update():
             print 'added %s items' % result['count']
             count = 0
             while 'next' in result and result['count'] > 0 and count < 25:
-                result = sites[site](page=result['next'])
-                print 'added %s items' % result['count']
-                count += 1
+                try:
+                    result = sites[site](page=result['next'])
+                except AttributeError:
+                    print 'Attribute error'
+                else:
+                    print 'added %s items' % result['count']
+                    count += 1
