@@ -3,14 +3,12 @@
 
 pip-selfcheck.json
 
-.idea/
-*.iml
-
 *.pyc
 *.swp
 
 bin/
 include/
 lib/
+static/bower_components/
 
 *.sh
