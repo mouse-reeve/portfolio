@@ -10,5 +10,3 @@ bin/
 include/
 lib/
 static/bower_components/
-
-*.sh
