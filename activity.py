@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 import urllib2
 from urllib import quote_plus
 
-from server import models, app
+from portfolio import app, models
 
 def github(page=1):
     ''' github activity '''

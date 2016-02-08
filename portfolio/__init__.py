@@ -8,9 +8,8 @@ flora = NominaFlora()
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-import models
+import portfolio.models as models
 
 models.db.init_app(app)
-
 
 import portfolio.views
