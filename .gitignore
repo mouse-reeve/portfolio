@@ -9,4 +9,4 @@ pip-selfcheck.json
 bin/
 include/
 lib/
-static/bower_components/
+portfolio/static/bower_components/

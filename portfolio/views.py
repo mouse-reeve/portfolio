@@ -1,31 +1,21 @@
-''' Simple webserver and API routing '''
+''' site views '''
 from datetime import datetime, timedelta
-from flask import Flask, make_response
+from flask import render_template
 import json
-from nominaflora.NominaFlora import NominaFlora
-import os
 
-# CONFIG
-app = Flask(__name__)
-flora = NominaFlora()
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
-import models
-
-models.db.init_app(app)
+from portfolio import app, flora, models
 
 # ROUTES
 @app.route('/')
 def index():
     ''' render the basic template for angular '''
-    return make_response(open('index.html').read())
+    return render_template('index.html')
 
 
 @app.route('/<path>')
 def angular(path):
     ''' render the basic template for angular '''
-    return make_response(open('index.html').read())
+    return render_template('index.html')
 
 
 # the fun stuff API
@@ -55,9 +45,3 @@ def get_activity():
     stats['total'] = sum([day['count'] for day in stats['days']])
 
     return json.dumps({'stats': stats, 'activity': data})
-
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0', port=4000)
-
