@@ -7,7 +7,7 @@ import json
 import os
 import re
 import requests
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, DataError
 import urllib2
 from urllib import quote_plus
 
@@ -121,7 +121,8 @@ def instagram():
                                (os.environ['IG_USER_ID'],
                                 os.environ['IG_CLIENT_ID']))
     except KeyError:
-        return 0
+        print 'key error'
+        return {'count': 0}
 
     data = json.loads(data.read())
     site = 'Instagram'
@@ -159,7 +160,11 @@ def goodreads():
         time = re.sub(r' -0.00', '', item['published'])
         time = datetime.strptime(time, '%a, %d %b %Y %H:%M:%S')
 
-        link = item.links[0]['href']
+        try:
+            link = item.links[0]['href']
+        except AttributeError:
+            link = ''
+
         reference = 'goodreads-%s' % item.id
 
         try:
@@ -167,6 +172,8 @@ def goodreads():
             activity.save()
             count += 1
         except IntegrityError:
+            models.db.session.rollback()
+        except DataError:
             models.db.session.rollback()
 
     return {'count': count}
@@ -190,6 +197,8 @@ def librarything():
             activity.save()
             count += 1
         except IntegrityError:
+            models.db.session.rollback()
+        except DataError:
             models.db.session.rollback()
 
     return {'count': count}
