@@ -9,14 +9,7 @@
 </div>
 
 <div class="card navigation">
-    <a href="/clocks">clocks</a>
-    <a href="/chomsky">chomp</a>
-    <a href="/thesaurus">sense</a>
-    <a href="/kipple">kipple</a>
-    <a href="/flora">flora</a>
-    <a href="/activity">activity</a>
-    <a href="/resume">r&eacute;sum&eacute;</a>
-    <a href="/about">about</a>
+    <a ng-repeat="page in pages" href="/{{ page.link }}">{{ page.display }}</a>
 </div>
 
 <statuschart data="activity" show-calendar="false"></statuschart>
@@ -27,7 +20,6 @@
     <a href="https://fortunes.churchofdada.com/" target="_blank">fortunes</a>
     <a href="https://www.grimoire.org/" target="_blank">grimoire.org</a>
     <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xCD9A922FEF10CB25" target="_blank">pgp</a>
-    <a href="http://blog.mousereeve.com/">blog</a>
 </div>
 
 <div class="card">
