@@ -19,14 +19,14 @@ def angular(path):
 
 
 # the fun stuff API
-@app.route('/api/flora', methods=['GET'])
+@app.route('/api/flora')
 def flower_names():
     ''' returns a made up flower name '''
     name = {'common': flora.get_common_name(), 'scientific': flora.get_scientific_name()}
     return json.dumps(name)
 
 
-@app.route('/api/activity', methods=['GET'])
+@app.route('/api/activity')
 def get_activity():
     ''' load activity from all time '''
     data = []
