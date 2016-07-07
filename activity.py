@@ -124,8 +124,8 @@ def instagram():
         data = urllib2.urlopen('https://api.instagram.com/v1/users/%s/media/recent/?client_id=%s' %
                                (os.environ['IG_USER_ID'],
                                 os.environ['IG_CLIENT_ID']))
-    except KeyError:
-        print 'key error'
+    except (KeyError, urllib2.HTTPError):
+        print 'error making instagram request'
         return {'count': 0}
 
     data = json.loads(data.read())
