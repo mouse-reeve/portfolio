@@ -15,7 +15,11 @@ from portfolio import app, models
 
 def github(page=1):
     ''' github activity '''
-    data = urllib2.urlopen('https://api.github.com/users/mouse-reeve/events/public?page=%d' % page)
+    try:
+        data = urllib2.urlopen('https://api.github.com/users/mouse-reeve/events/public?page=%d' % page)
+    except urllib2.HTTPError:
+        return {'count': 0}
+
     data = json.loads(data.read())
 
     site = 'GitHub'
