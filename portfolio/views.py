@@ -1,6 +1,7 @@
 ''' site views '''
 from datetime import datetime, timedelta
-from flask import render_template
+from flask import render_template, redirect
+from jinja2.exceptions import TemplateNotFound
 import json
 
 from portfolio import app, flora, models
@@ -21,6 +22,15 @@ def index():
     ]
 
     return render_template('index.html', pages=pages, activity=get_activity())
+
+@app.route('/<name>')
+def page(name):
+    ''' render a template, if it exists '''
+    template = '%s.html' % name
+    try:
+        return render_template(template)
+    except TemplateNotFound:
+        return redirect('/')
 
 # the fun stuff API
 @app.route('/api/flora')
