@@ -8,21 +8,28 @@ from portfolio import app, flora, models
 # ROUTES
 @app.route('/')
 def index():
-    ''' render the basic template for angular '''
-    return render_template('index.html')
+    ''' render the home page and links '''
+    pages = [
+        {'link': 'clocks', 'display': 'clocks'},
+        {'link': 'chomsky', 'display': 'chomp'},
+        {'link': 'thesaurus', 'display': 'sense'},
+        {'link': 'flora', 'display': 'flora'},
+        {'link': 'kipple', 'display': 'kipple'},
+        {'link': 'activity', 'display': 'activity'},
+        {'link': 'resume', 'display': 'r&eacute;sum&eacute;'},
+        {'link': 'about', 'display': 'about'}
+    ]
 
-
-@app.route('/<path>')
-def angular(path):
-    ''' render the basic template for angular '''
-    return render_template('index.html')
-
+    return render_template('index.html', pages=pages, activity=get_activity())
 
 # the fun stuff API
 @app.route('/api/flora')
 def flower_names():
     ''' returns a made up flower name '''
-    name = {'common': flora.get_common_name(), 'scientific': flora.get_scientific_name()}
+    name = {
+        'common': flora.get_common_name(),
+        'scientific': flora.get_scientific_name()
+    }
     return json.dumps(name)
 
 

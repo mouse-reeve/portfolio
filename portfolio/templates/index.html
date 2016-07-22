@@ -1,114 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="app">
-<head>
-    <title>Mouse Reeve</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block body %}
+<p>it's ok to be confused</p>
 
-    <link type="text/css" rel="stylesheet" href="static/styles/format.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="card">
+    <p>
+    <q><a href="{{ (pages | random).link }}">
+            Anyone who uses arithmetic methods to produce random numbers is in a state of sin.
+        </a></q> --- John von Neumann
+    </p>
+</div>
 
-    <script src="/static/bower_components/angular/angular.min.js"></script>
-    <script src="/static/bower_components/angular-route/angular-route.min.js"></script>
+<div class="card navigation">
+    {% for page in pages %}
+    <a href="/{{ page.link }}">{{ page.display | safe }}</a>
+    {% endfor %}
+</div>
 
-    <!-- APP -->
-    <script src="static/javascripts/resources/thesaurus.js"></script>
-    <script src="static/javascripts/app.js"></script>
+<statuschart data="activity" show-calendar="false"></statuschart>
 
-    <!-- Services -->
-    <script src="static/javascripts/services/activity.service.js"></script>
-    <script src="static/javascripts/services/flora.service.js"></script>
+<div class="card navigation">
+    <a href="https://blog.mousereeve.com/" target="_blank">blog</a>
 
-    <!-- Controllers -->
-    <script src="static/javascripts/controllers/main.controller.js"></script>
-    <script src="static/javascripts/controllers/activity.controller.js"></script>
-    <script src="static/javascripts/controllers/clocks.controller.js"></script>
-    <script src="static/javascripts/controllers/flora.controller.js"></script>
-    <script src="static/javascripts/controllers/resume.controller.js"></script>
+    <a href="https://twitter.com/possible_flora" target="_blank">speculative flora</a>
+    <a href="https://twitter.com/brand_new_facts" target="_blank">brand new facts</a>
+    <a href="https://fortunes.churchofdada.com/" target="_blank">fortunes</a>
+    <a href="https://www.grimoire.org/" target="_blank">grimoire.org</a>
+    <a href="https://www.veganteaparty.club/" target="_blank">veganteaparty.club</a>
+    <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xCD9A922FEF10CB25" target="_blank">pgp</a>
+</div>
 
-    <!-- Directives -->
-    <script src="static/bower_components/angular-flasker/flask.directive.js"></script>
-    <script src="static/javascripts/directives/kippleize.directive.js"></script>
-    <script src="static/javascripts/directives/shuffle.directive.js"></script>
-    <script src="static/javascripts/directives/status-chart.directive.js"></script>
-    <script src="static/javascripts/directives/thesaurus.directive.js"></script>
-
-    <!-- Filters -->
-    <script src="static/javascripts/filters/formatNumber.filter.js"></script>
-
-    <script src="static/javascripts/filters/percentLifeElapsed.filter.js"></script>
-    <script src="static/javascripts/filters/percentTimeElapsed.filter.js"></script>
-    <script src="static/javascripts/filters/percentTimeLeft.filter.js"></script>
-    <script src="static/javascripts/filters/reverseTime.filter.js"></script>
-    <script src="static/javascripts/filters/timeToBase.filter.js"></script>
-    <script src="static/javascripts/filters/timeToMovie.filter.js"></script>
-    <script src="static/javascripts/filters/timeToNegativeBase.filter.js"></script>
-    <script src="static/javascripts/filters/timeToRoman.filter.js"></script>
-
-    <!-- Piwik -->
-    <script type="text/javascript">
-      var _paq = _paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//piwik.grimoire.org/piwik/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', 2]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <noscript><p><img src="//piwik.grimoire.org/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
-    <!-- End Piwik Code -->
-
-</head>
-<body>
-    <header>
-        <h1><a href="/">Mouse Reeve</a> <small>It's ok to be confused</small></h1>
-    </header>
-
-    <div class="container" ng-view></div>
-
-    <noscript>
-        <div class="card navigation">
-            <a href="https://twitter.com/possible_flora" target="_blank">speculative flora</a>
-            <a href="https://twitter.com/brand_new_facts" target="_blank">brand new facts</a>
-            <a href="https://fortunes.churchofdada.com/" target="_blank">fortunes</a>
-            <a href="https://www.grimoire.org/" target="_blank">grimoire.org</a>
-            <a href="https://www.veganteaparty.club/" target="_blank">veganteaparty.club</a>
-            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xCD9A922FEF10CB25" target="_blank">pgp</a>
-            <a href="http://blog.mousereeve.com/">blog</a>
-        </div>
-
-        <div class="card">
-            <p>
-                Isidore said, 'We can't win.'
-            </p>
-            <p>
-                'Why not?' The girl stepped into the hall, closing the door behind her; arms folded self-consciously before her small high breasts she faced him, eager to understand. Or so it appeared to him, anyhow. She was at least listening.
-            </p>
-            <p>
-                'No one can win against kipple,' he said, 'except temporarily and maybe in one spot, like in my apartment I've sort of created a stasis between the pressure of kipple and nonkipple, for the time being. But eventually I'll die or go away, and then the kipple will again take over. It's a universal principle operating throughout the universe; the entire universe is moving toward a final state of total, absolute kipple-ization.'
-            </p>
-            <p class="label"><em>Do Androids Dream of Electric Sheep</em>, Philip K. Dick</p>
-        </div>
-
-        <div class="card">
-            <ul>
-                <li>
-                    <strong>twitter:</strong>
-                    <a href="https://twitter.com/tripofmice" target="_blank">tripofmice</a>
-                </li>
-                <li>
-                    <strong>github:</strong>
-                    <a href="https://github.com/mouse-reeve" target="_blank">mouse-reeve</a>
-                </li>
-                <li>
-                    <strong>email:</strong>
-                    <a href="mailto:mousereeve@riseup.net" target="_blank">mousereeve@riseup.net</a>
-                </li>
-            </ul>
-        </div>
-    </noscript>
-
-</body>
-</html>
+<div class="card">
+    <ul>
+        <li>
+            <i class="fa fa-twitter"></i>
+            <a href="https://twitter.com/tripofmice" target="_blank">tripofmice</a>
+        </li>
+        <li>
+            <i class="fa fa-github"></i>
+            <a href="https://github.com/mouse-reeve" target="_blank">mouse-reeve</a>
+        </li>
+        <li>
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:mousereeve@riseup.net" target="_blank">mousereeve@riseup.net</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
