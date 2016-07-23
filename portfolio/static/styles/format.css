@@ -82,7 +82,7 @@ q a {
     text-decoration: none;
 }
 
-.toggle {
+#toggle {
     text-align: center;
     font-size: 1.2em;
     color: blue;

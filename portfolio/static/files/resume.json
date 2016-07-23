@@ -1,0 +1,75 @@
+{
+    "experience": [
+        {
+            "company": "Internet Archive",
+            "url": "https://archive.org",
+            "position": "Web Application Developer",
+            "start": "2015-04-27"
+        }, {
+            "company": "Radius Intelligence",
+            "url": "https://radius.com",
+            "position": "Software Engineer",
+            "start": "2013-01-02",
+            "end": "2015-04-21",
+            "description": "Application engineering, responsible for front-end and API using Java, JavaScript, and Angular.js."
+        }, {
+            "company": "UW Information Technology",
+            "url": "http://www.washington.edu/itconnect/",
+            "position": "Student Web Developer",
+            "start": "2012-04-01",
+            "end": "2012-12-15",
+            "description": "Developed mobile and web applications in Python and JavaScript for student and university use."
+        }, {
+            "company": "Nikola Project, UW Electrical Engineering",
+            "url": "http://nikola.ee.washington.edu/",
+            "position": "Student System Administrator",
+            "start": "2011-04-01",
+            "end": "2011-10-01",
+            "description": "Provided technical support and maintenance for Linux servers and workstations."
+        }, {
+            "company": "SSLI Lab",
+            "url": "https://ssli.ee.washington.edu/",
+            "position": "Research Assistant",
+            "start": "2011-06-01",
+            "end": "Aug 2011",
+            "description": "Developed and assisted in implementing algorithms for natural language processing."
+        }, {
+            "company": "UW IMA",
+            "url": "https://www.washington.edu/ima/",
+            "position": "Roller Skating Supervisor",
+            "start": "2010-09-01",
+            "end": "2012-11-01",
+            "description": "Taught basic skating skills, gave out rental skates, monitored and enforced safety rules."
+        }
+    ],
+    "skills": [
+        "Python",
+        "Java",
+        "Javascript",
+        "SQL",
+        "Neo4j",
+        "Angular.js",
+        "React.js",
+        "Flask",
+        "Django",
+        "RESTful",
+        "MVC",
+        "Git",
+        "Bash",
+        "Linux"
+    ],
+    "education": [
+        {
+            "school": "University of Washington",
+            "degree": "Bachelor of Arts, Anthropology",
+            "start": "2008-09-01",
+            "end": "2012-12-15",
+            "description": "Minor in Mathematics. Coursework in Java, web programmingUnix, and Matlab"
+        }, {
+            "school": "Foothill Community College",
+            "start": "2006-09-01",
+            "end": "2007-06-01",
+            "description": "Computer science classes concurrently with high school."
+        }
+    ]
+}

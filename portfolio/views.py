@@ -1,8 +1,10 @@
 ''' site views '''
 from datetime import datetime, timedelta
+from dateutil.parser import parse
 from flask import render_template, redirect
 from jinja2.exceptions import TemplateNotFound
 import json
+from time import strftime
 
 from portfolio import app, flora, models
 
@@ -22,6 +24,12 @@ def index():
     ]
 
     return render_template('index.html', pages=pages, activity=get_activity())
+
+@app.route('/resume')
+def resume():
+    ''' render resume template from json '''
+    data = json.load(file('portfolio/static/files/resume.json'))
+    return render_template('resume.html', resume=data)
 
 @app.route('/<name>')
 def page(name):
@@ -62,3 +70,18 @@ def get_activity():
     stats['total'] = sum([day['count'] for day in stats['days']])
 
     return json.dumps({'stats': stats, 'activity': data})
+
+
+# --- filters
+@app.template_filter('time')
+def time_filter(date):
+    ''' make time fields pretty '''
+    if not date:
+        return 'present'
+
+    try:
+        timestamp = parse(date)
+    except ValueError:
+        return date
+
+    return timestamp.strftime('%b %Y')

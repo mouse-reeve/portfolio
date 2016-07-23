@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<p id="toggle"><i class="fa fa-flask"></i></p>
+
+<div class="text">
+    <section>
+        <h2>Experience</h2>
+
+        {% for item in resume.experience %}
+        {{ experience_item(item) }}
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <ul class="skills">
+            {% for skill in resume.skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+
+        {% for item in resume.education %}
+        {{ education_item(item) }}
+        {% endfor %}
+    </section>
+
+</div>
+
+<div id="external" class="card">
+    <a href="https://www.linkedin.com/pub/mouse-reeve/21/483/a47" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+</div>
+{% endblock %}
+
+{% macro experience_item(data) %}
+<h3>
+    <a href="{{ data.url }}" target="_blank">{{ data.company }}</a>
+</h3>
+<p class="time"><time datetime="{{ data.start }}">{{ data.start | time }}</time> - <time datetime="{{ data.end }}">{{ data.end | time }}</time></p>
+<h4>{{ data.position }}</h4>
+<p>{{ data.description }}</p>
+{% endmacro %}
+
+{% macro education_item(data) %}
+<h3>{{ data.school }}</h3>
+<p class="time"><time datetime="{{ data.start }}">{{ data.start | time }}</time> - <time datetime="{{ data.end }}">{{ data.end | time }}</time></p>
+<h4>{{ data.degree }}</h4>
+<p>{{ data.description }}</p>
+{% endmacro %}
