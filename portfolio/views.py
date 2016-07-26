@@ -4,7 +4,6 @@ from dateutil.parser import parse
 from flask import render_template, redirect
 from jinja2.exceptions import TemplateNotFound
 import json
-from time import strftime
 
 from portfolio import app, flora, models
 
