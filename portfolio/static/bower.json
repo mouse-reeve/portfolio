@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "homepage": "https://github.com/mouse-reeve/portfolio",
+  "authors": [
+    "Mouse Reeve <mouse.reeve@gmail.com>"
+  ],
+  "description": "mouse reeve's portfolio",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reflaskerer": "mouse-reeve/reflasker",
+    "react": "~15.3.1"
+  }
+}
