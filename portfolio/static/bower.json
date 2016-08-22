@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "reflaskerer": "mouse-reeve/reflasker",
-    "react": "~15.3.1"
+    "reflasker": "mouse-reeve/reflasker"
   }
 }
