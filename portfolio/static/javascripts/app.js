@@ -42,6 +42,11 @@ angular.module('app', [
                 controller: 'ClocksCtrl',
                 templateUrl: 'static/partials/clocks.html'
             })
+            .when('/death', {
+                title: 'Life Expentancy Clock',
+                controller: 'ClocksCtrl',
+                templateUrl: 'static/partials/death-clock.html'
+            })
             .when('/chomsky', {
                 title: 'Chomsky',
                 templateUrl: 'static/partials/chomsky.html'
