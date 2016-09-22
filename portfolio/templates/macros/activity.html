@@ -1,17 +1,17 @@
-{% macro activity(data, show_calendar, show_activity, filter_value) %}
+{% macro activity(data, show_all) %}
 <div class="status-chart">
     {% for day in data.stats.days %}
     <div class="status-bar">
-        {% if show_calendar %}
+        {% if show_all  %}
         <p>
-            {% if show_activity %}
-            <a href="#">{{ day.date }}</a>
+            {% if show_all %}
+            <a href="#">{{ day.day }}</a>
             {% else %}
-            <span>{{ day.date }}</span>
+            <span>{{ day.day }}</span>
             {% endif %}
         </p>
         {% endif %}
-        {% if not show_calendar %}
+        {% if not show_all %}
         <p class="status-spacer"></p>
         {% endif %}
         {% for i in range(day.count) %}
@@ -21,11 +21,9 @@
     {% endfor %}
 </div>
 
-{% if show_activity %}
+{% if show_all %}
 <div class="status-activity">
-    {% if filter_value %}
-    <h3 class="date-header">{{ filterValue }}</h3>
-    {% endif %}
+    <h3 class="date-header">{{ data.activity[-1].date }}</h3>
     {% for item in data.activity %}
     <p>
         {{ item.time }}:

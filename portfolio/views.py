@@ -30,6 +30,11 @@ def resume():
     data = json.load(file('portfolio/static/files/resume.json'))
     return render_template('resume.html', resume=data)
 
+@app.route('/activity')
+def actvity():
+    ''' render resume template from json '''
+    return render_template('activity.html', activity=get_activity())
+
 @app.route('/<name>')
 def page(name):
     ''' render a template, if it exists '''
@@ -58,11 +63,16 @@ def get_activity():
     activity_data = models.get_activity(limit)
 
     stats = {'days': []}
-    data = [item.serialize() for item in activity_data]
+    for item in activity_data:
+        date = item.time.strftime('%A, %d %b %Y')
+        item = item.serialize()
+        item['date'] = date
+        data.append(item)
 
     for day in (limit + timedelta(n) for n in range(15)):
         stats['days'].append({
             'date': day.isoformat()[:10],
+            'day': day.strftime('%a'),
             'count': len([i for i in data if \
                 i['time'][:10] == day.isoformat()[:10]])
             })
