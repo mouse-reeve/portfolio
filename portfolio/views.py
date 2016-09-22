@@ -68,7 +68,7 @@ def get_activity():
             })
     stats['total'] = sum([day['count'] for day in stats['days']])
 
-    return json.dumps({'stats': stats, 'activity': data})
+    return {'stats': stats, 'activity': data}
 
 
 # --- filters

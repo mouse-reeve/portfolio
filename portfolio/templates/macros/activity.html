@@ -1,0 +1,38 @@
+{% macro activity(data, show_calendar, show_activity, filter_value) %}
+<div class="status-chart">
+    {% for day in data.stats.days %}
+    <div class="status-bar">
+        {% if show_calendar %}
+        <p>
+            {% if show_activity %}
+            <a href="#">{{ day.date }}</a>
+            {% else %}
+            <span>{{ day.date }}</span>
+            {% endif %}
+        </p>
+        {% endif %}
+        {% if not show_calendar %}
+        <p class="status-spacer"></p>
+        {% endif %}
+        {% for i in range(day.count) %}
+        <p class="tick">*</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+{% if show_activity %}
+<div class="status-activity">
+    {% if filter_value %}
+    <h3 class="date-header">{{ filterValue }}</h3>
+    {% endif %}
+    {% for item in data.activity %}
+    <p>
+        {{ item.time }}:
+        {{ item.site }}
+        ({% if item.site == 'Twitter' or item.site == 'Instagram' %}<a href="{{ item.link }}" target="_blank">{{ item.action }}</a>{% else %}<span>{{ item.action }}</span>{% endif %})
+    </p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endmacro %}

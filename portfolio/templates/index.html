@@ -1,3 +1,4 @@
+{% import 'macros/activity.html' as activity_chart %}
 {% extends "layout.html" %}
 {% block body %}
 <p>it's ok to be confused</p>
@@ -16,7 +17,7 @@
     {% endfor %}
 </div>
 
-<statuschart data="activity" show-calendar="false"></statuschart>
+{{ activity_chart.activity(activity, false) }}
 
 <div class="card navigation">
     <a href="https://blog.mousereeve.com/" target="_blank">blog</a>
