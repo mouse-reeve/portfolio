@@ -1,0 +1,7 @@
+{% import 'macros/activity.html' as activity_chart %}
+{% extends "layout.html" %}
+{% block body %}
+
+{{ activity_chart.activity(activity, true) }}
+
+{% endblock %}
